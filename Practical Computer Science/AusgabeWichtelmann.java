@@ -6,7 +6,7 @@ public class AusgabeWichtelmann {
               System.out.println(" /    \\");
               System.out.println("/      \\");  
               System.out.println("--------");
-              System.out.println("| \"  \" |  ");              
+              System.out.println("| \"  \" |");              
               System.out.println("|  \'\'  |");
               System.out.println("| ---- |");
               System.out.println("--------");

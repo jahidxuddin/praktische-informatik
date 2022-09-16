@@ -7,23 +7,23 @@ import java.text.DecimalFormat;
 
 public class Notenberechnung {
 
-    static int note1;
-    static int note2;
-    static int note3;
-    static int note4;
-    static int note5;
-    static int note6;
+    int note1;
+    int note2;
+    int note3;
+    int note4;
+    int note5;
+    int note6;
 
-    static int anzahlSchüler;
-    static String notendurchschnitt;
+    int anzahlSchüler;
+    String notendurchschnitt;
 
-    public static void titel() {
+    public void titel() {
         System.out.println("********************************************");
         System.out.println("\tBerechnung Notendurchschnitt");
         System.out.println("********************************************");
     }
 
-    public static void eingabe() { // Abfrage der geschriebenen Noten
+    public void eingabe() { // Abfrage der geschriebenen Noten
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\nNoteneingabe:");
@@ -49,7 +49,7 @@ public class Notenberechnung {
         scanner.close();
     }
 
-    public static void berechnen() { // Berechnung des Notendurchschnitts
+    public void berechnen() { // Berechnung des Notendurchschnitts
         anzahlSchüler = note1 + note2 + note3 + note4 + note5 + note6; 
 
         DecimalFormat formatter = new DecimalFormat("#.##");  
@@ -58,7 +58,7 @@ public class Notenberechnung {
         );
     }
 
-    public static void ausgabe() { // Ausgabe der Ergebnisse 
+    public void ausgabe() { // Ausgabe der Ergebnisse 
         System.out.println("\nAuswertung:");
         System.out.println("Insgesamt haben Schüler " + anzahlSchüler + " an der Klassen-");
         System.out.println("arbeit teilgenommen.\n");
@@ -74,9 +74,10 @@ public class Notenberechnung {
     }
 
     public static void main(String[] args) {
-        titel();
-        eingabe();
-        berechnen();
-        ausgabe();
+        Notenberechnung rechner = new Notenberechnung();
+        rechner.titel();
+        rechner.eingabe();
+        rechner.berechnen();
+        rechner.ausgabe();
     }
 }

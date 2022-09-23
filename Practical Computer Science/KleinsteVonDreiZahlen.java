@@ -12,13 +12,13 @@ public class KleinsteVonDreiZahlen {
    
    double kleinsteZahl;
   
-   public void titel() {
+   public void titel() { 
       System.out.println("****************************************");
       System.out.println("\tKleinste von drei Zahlen");
       System.out.println("****************************************\n");
    }
   
-   public void eingabe() {
+   public void eingabe() { // Abfrage der benötigten Daten
       Scanner scanner = new Scanner(System.in);
       
       System.out.print("Bitte geben Sie die Zahl 1 ein: "); 
@@ -33,7 +33,7 @@ public class KleinsteVonDreiZahlen {
       scanner.close();
    }
    
-   public void berechnen() {
+   public void berechnen() { // Berechnung der kleinsten von drei Zahlen
       if (zahl1 < zahl2) {
          if (zahl1 < zahl3) {
             kleinsteZahl = zahl1;
@@ -53,7 +53,7 @@ public class KleinsteVonDreiZahlen {
       }
    }
    
-   public void ausgabe() {
+   public void ausgabe() { // Ausgabe der Ergebnisse
       System.out.println("\nAuswertung");
       System.out.println("Die kleinste Zahl von den Zahlen: ");
       System.out.println("Zahl 1: " + zahl1);

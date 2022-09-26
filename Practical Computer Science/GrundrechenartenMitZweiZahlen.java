@@ -10,8 +10,6 @@ public class GrundrechenartenMitZweiZahlen {
     double zahl2;
     String eingabeAuswahl;
 
-    String operator;
-
     double ergebnis;
 
     public void titel() {

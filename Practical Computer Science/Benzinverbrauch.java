@@ -52,10 +52,10 @@ public class Benzinverbrauch {
     }
 
     public static void main(String[] args) {
-        Benzinverbrauch rechner = new Benzinverbrauch();
-        rechner.titel();
-        rechner.eingabe();
-        rechner.berechnen();
-        rechner.ausgabe();
+        Benzinverbrauch benzinverbrauch = new Benzinverbrauch();
+        benzinverbrauch.titel();
+        benzinverbrauch.eingabe();
+        benzinverbrauch.berechnen();
+        benzinverbrauch.ausgabe();
     }
 }

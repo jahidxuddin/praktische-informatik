@@ -74,10 +74,10 @@ public class Notenberechnung {
     }
 
     public static void main(String[] args) {
-        Notenberechnung rechner = new Notenberechnung();
-        rechner.titel();
-        rechner.eingabe();
-        rechner.berechnen();
-        rechner.ausgabe();
+        Notenberechnung notenberechnung = new Notenberechnung();
+        notenberechnung.titel();
+        notenberechnung.eingabe();
+        notenberechnung.berechnen();
+        notenberechnung.ausgabe();
     }
 }

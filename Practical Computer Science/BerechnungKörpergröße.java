@@ -40,12 +40,10 @@ public class BerechnungKörpergröße {
         if (geschlecht.equals("1")) {
             geschlecht = "männlich";
             körpergröße = 2.238 * oberschenkellänge + 0.69089;
-        } 
-        
-        if (geschlecht.equals("2")) {
+        } else if (geschlecht.equals("2")) {
             geschlecht = "weiblich";
             körpergröße = 2 * oberschenkellänge + 0.61417;
-        }
+        } 
 
         if (alter > 30) {
             körpergröße = körpergröße - 0.0006 * (alter - 30);

@@ -43,7 +43,7 @@ public class Zinsen {
         if (laufzeitInJahre == 1) {
           zusatz = "Jahr";
         } else {
-          zusatz = "Jahre";
+          zusatz = "Jahren";
         }
         zinsen = (kaptial * zinssatz * laufzeitInJahre) / 100;
         endKapital = kaptial * (1 + laufzeitInJahre * (zinssatz / 100)); 

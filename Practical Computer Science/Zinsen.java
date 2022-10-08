@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 
 public class Zinsen {
   
-    double kaptial;
+    double kapital;
     double zinssatz;
     int laufzeitInJahre;
   
@@ -28,7 +28,7 @@ public class Zinsen {
         Scanner scanner = new Scanner(System.in);
     
         System.out.print("Bitte geben Sie das Startkapital ein: ");
-        kaptial = scanner.nextDouble();
+        kapital = scanner.nextDouble();
         
         System.out.print("Bitte geben Sie den Zinssatz ein: ");
         zinssatz = scanner.nextDouble();
@@ -45,12 +45,12 @@ public class Zinsen {
         } else {
           zusatz = "Jahren";
         }
-        zinsen = (kaptial * zinssatz * laufzeitInJahre) / 100;
-        endKapital = kaptial * (1 + laufzeitInJahre * (zinssatz / 100)); 
+        zinsen = (kapital * zinssatz * laufzeitInJahre) / 100;
+        endKapital = kapital * (1 + laufzeitInJahre * (zinssatz / 100)); 
     }
 
     public void ausgabe() { // Ausgabe der Ergebnisse 
-        System.out.println("\nBei einem Startkapital von " + kaptial + " EUR und Zins-");
+        System.out.println("\nBei einem Startkapital von " + kapital + " EUR und Zins-");
         System.out.println("satz von " + oneDecimal.format(zinssatz) + "% liegt das Kaptial nach ");
         System.out.println(laufzeitInJahre + " " + zusatz + " und Zinsen von ");
         System.out.println(twoDecimal.format(zinsen) + " EUR bei " + twoDecimal.format(endKapital) + " EUR.");

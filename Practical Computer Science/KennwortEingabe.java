@@ -14,7 +14,9 @@ public class KennwortEingabe {
         String benutzereingabe = "";
         int versuche = 3;
 
-        while (!benutzereingabe.equals("FLS")) {
+        final String PASSWORT = "FLS";
+
+        while (!benutzereingabe.equals(PASSWORT)) {
             if (versuche == 0) {
                 System.out.println("\nIhre Benutzererkennung wird gesperrt!");
                 System.exit(500);

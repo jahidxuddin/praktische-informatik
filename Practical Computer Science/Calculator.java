@@ -4,7 +4,7 @@ import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class Calculator {  
+public class Calculator {
     public static void main(String[] args) {
         new CalculatorFrame();
     }
@@ -27,13 +27,13 @@ class CalculatorFrame extends JFrame {
 
     public void setupFrame() {
         setTitle("Taschenrechner");
-        setIconImage(new ImageIcon(ClassLoader.getSystemResource("icon.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getClassLoader().getResource("icon.png")).getImage());
         setSize(300, 400);
         setMinimumSize(new Dimension(300, 400));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setFocusable(true);
     }
-    
+
     public void centerWindow() {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - getWidth()) / 2);
@@ -83,19 +83,19 @@ class CalculatorPanel extends JPanel {
         buttons.setBackground(new Color(34, 34, 34));
 
         String[] buttonLabels = {
-            "7", "8", "9", "÷", 
-            "4", "5", "6", "×", 
-            "1", "2", "3", "-", 
-            "0", ".", "=", "+"
+                "7", "8", "9", "÷",
+                "4", "5", "6", "×",
+                "1", "2", "3", "-",
+                "0", ".", "=", "+"
         };
 
-        for (int i = 0; i < buttonLabels.length; i++) {
-          buttonFactory(buttonLabels[i]);
-        } 
+        for (String buttonLabel : buttonLabels) {
+            buttonFactory(buttonLabel);
+        }
     }
 
     public void buttonFactory(String label) {
-        JButton button = new JButton(label);
+        final JButton button = new JButton(label);
 
         button.setFocusable(false);
         button.setName(label);
@@ -111,56 +111,79 @@ class CalculatorPanel extends JPanel {
             button.setFont(new Font(button.getName(), Font.PLAIN, 20));
         }
 
-        button.addActionListener(e -> {
-            String btnText = ((JButton) e.getSource()).getText();
-            
+        button.addActionListener(new ActionListener() {;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               String btnText = ((JButton) e.getSource()).getText();
+
             if (!hasFirstClicked) {
-              hasFirstClicked = true;
-              textField.setText("");
+                hasFirstClicked = true;
+                textField.setText("");
             }
 
             if (btnText.equals("+") || btnText.equals("-") || btnText.equals("×") || btnText.equals("÷")) {
-              if (textField.getText().contains("+") || textField.getText().contains("×") || textField.getText().contains("÷")) {
                 String[] splittedTextField = textField.getText().split(" ");
-                try {
-                    calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], btnText);
-                } catch (ArrayIndexOutOfBoundsException exception) {
+                if (splittedTextField.length > 1) {
+                    if (textField.getText().contains("+") || splittedTextField[1].equals("-") || textField.getText().contains("×") || textField.getText().contains("÷")) {
+                        try {
+                            calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], btnText);
+                        } catch (ArrayIndexOutOfBoundsException ignored) {
 
-                }
-              } else {
-                if (textField.getText().length() == 0) {
-                    textField.setText(btnText);
-                } else {
-                    if (textField.getText().charAt(textField.getText().length() - 1) == ' ') {
-                        textField.setText(textField.getText() + btnText + " ");
+                        }
                     } else {
-                        textField.setText(textField.getText() + " " + btnText + " ");
+                        if (textField.getText().length() == 0) {
+                            textField.setText(btnText);
+                        } else {
+                            if (textField.getText().charAt(textField.getText().length() - 1) == ' ') {
+                                textField.setText(textField.getText() + btnText + " ");
+                            } else {
+                                textField.setText(textField.getText() + " " + btnText + " ");
+                            }
+                        }
+                    }
+                } else {
+                    if (textField.getText().contains("+") || textField.getText().contains("×") || textField.getText().contains("÷")) {
+                        try {
+                            calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], btnText);
+                        } catch (ArrayIndexOutOfBoundsException ignored) {
+
+                        }
+                    } else {
+                        if (textField.getText().length() == 0) {
+                            textField.setText(btnText);
+                        } else {
+                            if (textField.getText().charAt(textField.getText().length() - 1) == ' ') {
+                                textField.setText(textField.getText() + btnText + " ");
+                            } else {
+                                textField.setText(textField.getText() + " " + btnText + " ");
+                            }
+                        }
                     }
                 }
-              }
             } else if (btnText.equals("=")) {
                 String[] splittedTextField = textField.getText().split(" ");
                 if (!textField.getText().isEmpty()) {
                     try {
                         calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], "");
-                    } catch (ArrayIndexOutOfBoundsException exception) {
+                    } catch (ArrayIndexOutOfBoundsException ignored) {
 
                     }
                 }
             } else {
-              textField.setText(textField.getText() + btnText);
+                textField.setText(textField.getText() + btnText);
+            }
             }
         });
 
         button.addMouseListener(new MouseAdapter() {
             Color buttonBgColor = button.getBackground();
-      
+
             public void mouseEntered(MouseEvent evt) {
-              button.setBackground(Color.DARK_GRAY);
+                button.setBackground(Color.DARK_GRAY);
             }
-        
+
             public void mouseExited(MouseEvent evt) {
-              button.setBackground(buttonBgColor);
+                button.setBackground(buttonBgColor);
             }
         });
 
@@ -173,7 +196,7 @@ class CalculatorPanel extends JPanel {
                 switch (operator) {
                     case "+":
                         textField.setText(String.valueOf(Double.parseDouble(number1) + Double.parseDouble(number2)));
-                        break;  
+                        break;
                     case "-":
                         textField.setText(String.valueOf(Double.parseDouble(number1) - Double.parseDouble(number2)));
                         break;
@@ -190,7 +213,7 @@ class CalculatorPanel extends JPanel {
                 switch (operator) {
                     case "+":
                         textField.setText(String.valueOf(Double.parseDouble(number1) + Double.parseDouble(number2)) + " " + currentOperator + " ");
-                        break;  
+                        break;
                     case "-":
                         textField.setText(String.valueOf(Double.parseDouble(number1) - Double.parseDouble(number2)) + " " + currentOperator + " ");
                         break;
@@ -203,9 +226,9 @@ class CalculatorPanel extends JPanel {
                     default:
                         break;
                 }
-            } 
-        } catch (NumberFormatException exception) {
-            
+            }
+        } catch (NumberFormatException ignored) {
+
         }
     }
 }
@@ -221,7 +244,7 @@ class ButtonKeyListener implements KeyListener {
 
     public Component getComponentByName(String name) {
         if (componentMap.containsKey(name)) {
-            return (Component) componentMap.get(name);
+            return componentMap.get(name);
         }
         return null;
     }
@@ -233,7 +256,7 @@ class ButtonKeyListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override
@@ -254,7 +277,7 @@ class ButtonKeyListener implements KeyListener {
                         String removedLastChar = textField.getText().substring(0, textField.getText().length() - 1);
                         textField.setText(removedLastChar);
                     }
-                } catch (StringIndexOutOfBoundsException exception) {
+                } catch (StringIndexOutOfBoundsException ignored) {
 
                 }
             } else {
@@ -273,8 +296,8 @@ class ButtonKeyListener implements KeyListener {
                         break;
                 }
             }
-        } catch (NullPointerException exception) {
-            
+        } catch (NullPointerException ignored) {
+
         }
     }
 }

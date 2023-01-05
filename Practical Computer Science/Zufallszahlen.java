@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/*
+    Minispiel: Erratung der Zufallszahl 
+*/
+
 public class Zufallszahlen {
     
     static Scanner scanner = new Scanner(System.in);

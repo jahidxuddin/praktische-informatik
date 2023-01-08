@@ -14,6 +14,9 @@ public class Abzahlungsdarlehen {
     double kreditbetrag, zinssatz;
     static int laufzeitInJahren;
 
+    static final int MAXIMALE_LAUFZEIT = 10;
+    static final int MINIMALE_LAUFZEIT = 1;
+
     String ausgabe;
     double summeZinsen, summeTilgung, summeAnuität, anteilKreditbetrag;
 
@@ -65,7 +68,7 @@ public class Abzahlungsdarlehen {
         char loop = 'J';
         while (loop == 'J' || loop == 'j') {
             abzahlungsdarlehen.eingabe();
-            if (laufzeitInJahren > 10 || laufzeitInJahren < 1) {
+            if (laufzeitInJahren > MAXIMALE_LAUFZEIT || laufzeitInJahren < MINIMALE_LAUFZEIT) {
                 System.out.println("\nDie Laufzeit beträgt minimal 1 und maximal 10 Jahre!\n");
                 continue;
             }

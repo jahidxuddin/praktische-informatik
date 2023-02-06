@@ -51,22 +51,12 @@ public class Zinseszinsberechnung {
     public static void main(String[] args) {
         Zinseszinsberechnung zinseszinsberechnung = new Zinseszinsberechnung();
         zinseszinsberechnung.titel();
-        boolean loop = true;
-        while (loop) {
+        char loop = 'J';
+        while (loop == 'J' || loop == 'j') {
             zinseszinsberechnung.eingabe(); 
             zinseszinsberechnung.berechnen();
             zinseszinsberechnung.ausgabe();
-            switch (scanner.next()) {
-                case "j":
-                    loop = true;
-                    break;
-                case "J":
-                    loop = true;
-                    break;
-                default:
-                    loop = false;
-                    break;
-            }
+            loop = scanner.next().charAt(0);
         }
         scanner.close();
     } 

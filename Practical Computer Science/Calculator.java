@@ -111,7 +111,7 @@ class CalculatorPanel extends JPanel {
             button.setFont(new Font(button.getName(), Font.PLAIN, 20));
         }
 
-        button.addActionListener(new ActionListener() {;
+        button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                String btnText = ((JButton) e.getSource()).getText();

@@ -5,43 +5,46 @@ import java.util.Scanner;
 */
 
 public class ExponentialFunktion {
-    
-    static Scanner scanner = new Scanner(System.in);
-
-    double basis, exponent, ergebnis;
-
-    public void titel() {
-        System.out.println("******************************************************************");
-        System.out.println("                        Exponential-Funktion                      ");
-        System.out.println("******************************************************************");
+  
+  static Scanner scanner = new Scanner(System.in);
+  
+  double basis, exponent, ergebnis;
+  
+  public void titel() {
+    System.out.println("******************************************************************");
+    System.out.println("                        Exponential-Funktion                      ");
+    System.out.println("******************************************************************");
+  }
+  
+  public void eingabe() { // Abfrage der benötigten Daten  
+    System.out.print("Geben Sie eine Zahl ein, die Sie potenzieren möchten: ");
+    basis = scanner.nextDouble();
+    System.out.print("Bitte geben Sie den Exponenten ein: ");
+    exponent = scanner.nextDouble();
+  }
+  
+  public void verarbeitung() { // Verarbeitung der Daten
+    ergebnis = basis;
+    for (int i = 1;i < exponent ; i++) {
+      ergebnis *= basis;
+    } // end of for
+  }
+  
+  public void ausgabe() { // Ausgabe der Ergebnisse
+    System.out.println("\n" + basis + " hoch " + exponent + " = " + ergebnis);
+  }
+  
+  public static void main(String[] args) {
+    ExponentialFunktion exponentialFunktion = new ExponentialFunktion();
+    exponentialFunktion.titel();
+    char loop = 'J';
+    while (loop == 'J' || loop == 'j') {
+      exponentialFunktion.eingabe();
+      exponentialFunktion.verarbeitung();
+      exponentialFunktion.ausgabe();
+      System.out.print("\nMöchten Sie eine neue Berechnung durchführen? (J/N) ");
+      loop = scanner.next().charAt(0);
     }
-
-    public void eingabe() { // Abfrage der benÃ¶tigten Daten  
-        System.out.print("Geben Sie eine Zahl ein, die Sie potenzieren mÃ¶chten: ");
-        basis = scanner.nextDouble();
-        System.out.print("Bitte geben Sie den Exponenten ein: ");
-        exponent = scanner.nextDouble();
-    }
-
-    public void verarbeitung() { // Verarbeitung der Daten
-        ergebnis = Math.pow(basis, exponent);
-    }
-
-    public void ausgabe() { // Ausgabe der Ergebnisse
-        System.out.println("\n" + basis + " hoch " + exponent + " = " + ergebnis);
-    }
-
-    public static void main(String[] args) {
-        ExponentialFunktion exponentialFunktion = new ExponentialFunktion();
-        exponentialFunktion.titel();
-        char loop = 'J';
-        while (loop == 'J' || loop == 'j') {
-            exponentialFunktion.eingabe();
-            exponentialFunktion.verarbeitung();
-            exponentialFunktion.ausgabe();
-            System.out.print("\nMÃ¶chten Sie eine neue Berechnung durchfÃ¼hren? (J/N) ");
-            loop = scanner.next().charAt(0);
-        }
-        scanner.close();
-    } 
+    scanner.close();
+  } 
 }

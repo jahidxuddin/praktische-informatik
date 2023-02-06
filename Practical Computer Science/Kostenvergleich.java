@@ -65,21 +65,11 @@ public class Kostenvergleich {
     public static void main(String[] args) {
         Kostenvergleich kostenvergleich = new Kostenvergleich();
         kostenvergleich.titel();
-        boolean loop = true;
-        while (loop) {
+        char loop = 'J';
+        while (loop == 'J' || loop == 'j') {
             kostenvergleich.eingabe(); 
             kostenvergleich.ausgabe();
-            switch (scanner.next()) {
-                case "j":
-                    loop = true;
-                    break;
-                case "J":
-                    loop = true;
-                    break;
-                default:
-                    loop = false;
-                    break;
-            }
+            loop = scanner.next().charAt(0);
         }
         scanner.close();
     } 

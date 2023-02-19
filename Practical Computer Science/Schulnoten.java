@@ -1,72 +1,66 @@
-import java.util.HashMap;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
-/*
-    Potenzierung von Zahlen
-*/
-
 public class Schulnoten {
-    
     static Scanner scanner = new Scanner(System.in);
+    DecimalFormat formatter = new DecimalFormat("#.##");
 
-    int anzahlSchüler;
-    int[] notenliste; 
-
-    HashMap<Integer, Integer> notenspiegel = new HashMap<>();
-
-    String notenlisteAusgabe, notenspiegelAusgabe, notendurchschnittAusgabe;
+    int[] notenspiegel = new int[15 + 1];
+    int[] notenliste;
 
     public void titel() {
         System.out.println("*********************************************");
-        System.out.println("             Noteneingabe                    ");
+        System.out.println("                 Noteneingabe                ");
         System.out.println("*********************************************\n");
     }
 
-    public void eingabe() { // Abfrage der benötigten Daten  
-        System.out.print("Wie viele Schüler haben an der Klassenarbeit teilgenommen? ");
-        anzahlSchüler = scanner.nextInt();
-        notenliste = new int[anzahlSchüler];
-        for (int i = 0; i < anzahlSchüler; i++) {
+    public void eingabe() {
+        System.out.print("Wie viele Schüler haben an der Klassenarbeit teilgenommen: ");
+        int schüleranzahl = scanner.nextInt();
+        notenliste = new int[schüleranzahl];
+
+        for (int i = 0; i < notenliste.length; i++) {
             System.out.print("Notenpunkte des " + (i + 1) + ". Schülers eingeben: ");
             notenliste[i] = scanner.nextInt();
         }
     }
 
-    public void notenspiegel() { // Berechnung des Notenspiegels
-        for (int i = 0; i <= 15; i++) {
-            notenspiegel.put(i, 0);
-        }
-
-        notenspiegelAusgabe = "\nAusgabe Notenspiegel:";
-
-        for (int i = 0; i <= 15; i++) {
-            if (i < notenliste.length) {
-                notenspiegel.put(notenliste[i], notenspiegel.get(notenliste[i]) + 1);
-            } else {
-                break;
-            }
-        }
-
-        for (int i = 15; i >= 0; i--) {
-            if (i < 10) {
-                notenspiegelAusgabe += "\n " + i + " Punkte: " + notenspiegel.get(i) + " Schüler";
-            } else {
-                notenspiegelAusgabe += "\n" + i + " Punkte: " + notenspiegel.get(i) + " Schüler";
-            }
-        }
-    }
-
-    public void notendurchschnitt() { // Berechnung des Notendurchschnitts
-        notendurchschnittAusgabe = "\nDer Notendurchschnitt der Klasse beträgt: ";
-    }
-
-    public void ausgabe() { // Ausgabe der Ergebnisse
-        notenlisteAusgabe = "\nAusgabe Notenliste Schüler:\n";
+    public void notenliste() {
+        System.out.println("\nAusgabe Notenliste Schüler:\n");
         for (int i = 0; i < notenliste.length; i++) {
-            notenlisteAusgabe += "\n" + (i + 1) + ". Schüler: " + notenliste[i] + " Punkte";
+            System.out.println((i + 1) + ". Schüler: " + notenliste[i] + " Punkte");
         }
-        System.out.println(notenlisteAusgabe);
-        System.out.println(notenspiegelAusgabe);
+    }
+
+    public void notenspiegel() {
+        System.out.println("\nAusgabe Notenspiegel:");
+        for (int i = 15; i > 0; i--) {
+            for (int j = 0; j < notenliste.length; j++) {
+                if (notenliste[j] == i) {
+                    notenspiegel[i]++;
+                }
+            }
+
+            System.out.println(i + " Punkte: " + notenspiegel[i] + " Schüler");
+        }
+    }
+
+    public void notendurchschnitt() {
+        double notendurchschnitt = 0;
+
+        for (int i = 0; i < notenliste.length; i++) {
+            notendurchschnitt += notenliste[i];
+        }
+
+        notendurchschnitt /= notenliste.length;
+
+        System.out.println("\nDer Notendurchschnitt der Klasse beträgt: " + formatter.format(notendurchschnitt));
+    }
+
+    public void ausgabe() {
+        notenliste();
+        notenspiegel();
+        notendurchschnitt();
     }
 
     public static void main(String[] args) {
@@ -75,12 +69,10 @@ public class Schulnoten {
         char loop = 'J';
         while (loop == 'J' || loop == 'j') {
             schulnoten.eingabe();
-            schulnoten.notenspiegel();
-            schulnoten.notendurchschnitt();
             schulnoten.ausgabe();
-            System.out.print("\nMöchten Sie eine neue Berechnung durchführen? (J/N) ");
+            System.out.print("\nMöchten Sie die Noteneingabe wiederholen? (J/N) ");
             loop = scanner.next().charAt(0);
         }
         scanner.close();
-    } 
+    }
 }

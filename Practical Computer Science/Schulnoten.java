@@ -1,6 +1,10 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+/*
+    Berechnung von Schulnoten
+*/
+
 public class Schulnoten {
     static Scanner scanner = new Scanner(System.in);
     DecimalFormat formatter = new DecimalFormat("#.##");

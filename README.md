@@ -1,6 +1,6 @@
 # Computer-Science-Lessons
 
-This repository is based on my computer science subjects. It contains exercises to the programming languages java, javascript, php, css and to the markup language html.
+This repository is based on my computer science subjects. It contains exercises to the computer languages HTML, CSS, Javascript, PHP and Java.
 
 ## About
 - 👨‍💻 **Contributor**: **[ju_dev](https://github.com/ju-dev-16)**

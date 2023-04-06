@@ -1,7 +1,8 @@
+package schleifen;
+
 import java.util.Scanner;
 
 public class Kostenvergleich {
-
     static Scanner scanner = new Scanner(System.in);
 
     double fixum;
@@ -16,7 +17,7 @@ public class Kostenvergleich {
         System.out.println("********************************************************************\n");
     }
 
-    public void eingabe() { // Abfrage der benötigten Daten    
+    public void eingabe() { // Abfrage der benötigten Daten
         System.out.print("Fixum des Reisenden eingeben: ");
         fixum = scanner.nextDouble();
 
@@ -49,7 +50,9 @@ public class Kostenvergleich {
                 kostenGleich = "****";
             }
 
-            System.out.println(" " + umsätze + " EUR" + "\t  " + kostenHandlungsreisender + " EUR" + handlungsreisenderIstGünstiger + kostenGleich + " \t\t     " + kostenHandelsvertreter + " EUR" + handelsvertreterIstGünstiger + kostenGleich );
+            System.out.println(" " + umsätze + " EUR" + "\t  " + kostenHandlungsreisender + " EUR"
+                    + handlungsreisenderIstGünstiger + kostenGleich + " \t\t     " + kostenHandelsvertreter + " EUR"
+                    + handelsvertreterIstGünstiger + kostenGleich);
             umsätze = umsätze + 40000;
 
             handlungsreisenderIstGünstiger = "";
@@ -58,7 +61,7 @@ public class Kostenvergleich {
         }
 
         System.out.println("\nBei einem Umsatz von " + umsatz + " EUR verdienen beide Personen gleich viel!");
-        
+
         System.out.print("\nMöchten Sie noch eine Berechnung durchführen (j/n)? ");
     }
 
@@ -67,10 +70,10 @@ public class Kostenvergleich {
         kostenvergleich.titel();
         char loop = 'J';
         while (loop == 'J' || loop == 'j') {
-            kostenvergleich.eingabe(); 
+            kostenvergleich.eingabe();
             kostenvergleich.ausgabe();
             loop = scanner.next().charAt(0);
         }
         scanner.close();
-    } 
+    }
 }

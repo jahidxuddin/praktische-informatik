@@ -1,3 +1,5 @@
+package schleifen;
+
 import java.util.Scanner;
 
 /*
@@ -5,7 +7,6 @@ import java.util.Scanner;
 */
 
 public class Fakultät {
-    
     static Scanner scanner = new Scanner(System.in);
 
     static double zahl;
@@ -20,7 +21,7 @@ public class Fakultät {
         System.out.println("*********************************************");
     }
 
-    public void eingabe() { // Abfrage der benötigten Daten  
+    public void eingabe() { // Abfrage der benötigten Daten
         System.out.print("Bitte geben Sie eine Zahl zwischen 0 und 63 ein: ");
         zahl = scanner.nextDouble();
     }
@@ -50,7 +51,8 @@ public class Fakultät {
         while (loop == 'J' || loop == 'j') {
             fakultät.eingabe();
             if (zahl > MAXIMALE_FAKULTÄT || zahl < MINIMALE_FAKULTÄT) {
-                System.out.println("Geben Sie eine Zahl zwischen 0 und 63 ein, aus der die Fakultät berechnet werden soll!");
+                System.out.println(
+                        "Geben Sie eine Zahl zwischen 0 und 63 ein, aus der die Fakultät berechnet werden soll!");
                 continue;
             }
             fakultät.verarbeitung();
@@ -59,5 +61,5 @@ public class Fakultät {
             loop = scanner.next().charAt(0);
         }
         scanner.close();
-    } 
+    }
 }

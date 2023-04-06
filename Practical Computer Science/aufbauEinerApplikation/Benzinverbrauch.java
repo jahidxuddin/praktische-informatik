@@ -1,3 +1,5 @@
+package aufbauEinerApplikation;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -6,7 +8,6 @@ import java.util.Scanner;
 */
 
 public class Benzinverbrauch {
-
     int letzterKilometerstand;
     int aktuellerKilometerstand;
     int getankeLiter;
@@ -24,7 +25,7 @@ public class Benzinverbrauch {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\nEingabe:");
-        
+
         System.out.print("Bitte geben Sie den Kilometerstand beim letzten Tanken ein: ");
         letzterKilometerstand = scanner.nextInt();
 
@@ -43,11 +44,11 @@ public class Benzinverbrauch {
         DecimalFormat formatter = new DecimalFormat("#.##");
         benzinverbauch = formatter.format(getankeLiter * 100.00f / zurückgelegteKilometer);
     }
-    
+
     public void ausgabe() { // Ausgabe des Benzinverbauchs
         System.out.println("\nAuswertung:");
         System.out.println("Der durchschnittliche Benzinverbrauch beträgt " + benzinverbauch + " Liter");
-        System.out.println("pro gefahrene 100 Kilometer, wenn Sie " + zurückgelegteKilometer +" Kilometer gefahren");    
+        System.out.println("pro gefahrene 100 Kilometer, wenn Sie " + zurückgelegteKilometer + " Kilometer gefahren");
         System.out.println("sind und " + (float) getankeLiter + " Liter getankt haben.");
     }
 

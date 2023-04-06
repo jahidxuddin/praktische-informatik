@@ -1,3 +1,5 @@
+package calculator;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -17,9 +19,12 @@ class CalculatorFrame extends JFrame {
         setupFrame();
         centerWindow();
         getContentPane().add(new CalculatorPanel(hasFirstClicked));
-        HashMap<String, Component> frameComponents = createComponentMap(new HashMap<String, Component>(), getContentPane().getComponents());
-        HashMap<String, Component> panelComponents = createComponentMap(frameComponents, ((JPanel) frameComponents.get(null)).getComponents());
-        HashMap<String, Component> buttonPanelComponents = createComponentMap(panelComponents, ((JPanel) panelComponents.get(null)).getComponents());
+        HashMap<String, Component> frameComponents = createComponentMap(new HashMap<String, Component>(),
+                getContentPane().getComponents());
+        HashMap<String, Component> panelComponents = createComponentMap(frameComponents,
+                ((JPanel) frameComponents.get(null)).getComponents());
+        HashMap<String, Component> buttonPanelComponents = createComponentMap(panelComponents,
+                ((JPanel) panelComponents.get(null)).getComponents());
         JTextField textField = ((JTextField) buttonPanelComponents.get("textField"));
         addKeyListener(new ButtonKeyListener(buttonPanelComponents, textField));
         setVisible(true);
@@ -27,7 +32,7 @@ class CalculatorFrame extends JFrame {
 
     public void setupFrame() {
         setTitle("Taschenrechner");
-        setIconImage(new ImageIcon(getClass().getClassLoader().getResource("icon.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getClassLoader().getResource("./calculator/icon.png")).getImage());
         setSize(300, 400);
         setMinimumSize(new Dimension(300, 400));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,8 +46,9 @@ class CalculatorFrame extends JFrame {
         setLocation(x, y);
     }
 
-    public HashMap<String, Component> createComponentMap(HashMap<String, Component> componentMap, Component[] components) {
-        for (int i=0; i < components.length; i++) {
+    public HashMap<String, Component> createComponentMap(HashMap<String, Component> componentMap,
+            Component[] components) {
+        for (int i = 0; i < components.length; i++) {
             componentMap.put(components[i].getName(), components[i]);
         }
         return componentMap;
@@ -103,7 +109,8 @@ class CalculatorPanel extends JPanel {
         button.setForeground(Color.WHITE);
         button.setBorder(BorderFactory.createLineBorder(new Color(34, 34, 34)));
 
-        if (label.equals("+") || label.equals("-") || label.equals("×") || label.equals("÷") || label.equals("=") || label.equals(".")) {
+        if (label.equals("+") || label.equals("-") || label.equals("×") || label.equals("÷") || label.equals("=")
+                || label.equals(".")) {
             button.setBackground(new Color(18, 18, 18));
             button.setFont(new Font(button.getName(), Font.PLAIN, 28));
         } else {
@@ -114,64 +121,66 @@ class CalculatorPanel extends JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               String btnText = ((JButton) e.getSource()).getText();
+                String btnText = ((JButton) e.getSource()).getText();
 
-            if (!hasFirstClicked) {
-                hasFirstClicked = true;
-                textField.setText("");
-            }
+                if (!hasFirstClicked) {
+                    hasFirstClicked = true;
+                    textField.setText("");
+                }
 
-            if (btnText.equals("+") || btnText.equals("-") || btnText.equals("×") || btnText.equals("÷")) {
-                String[] splittedTextField = textField.getText().split(" ");
-                if (splittedTextField.length > 1) {
-                    if (textField.getText().contains("+") || splittedTextField[1].equals("-") || textField.getText().contains("×") || textField.getText().contains("÷")) {
-                        try {
-                            calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], btnText);
-                        } catch (ArrayIndexOutOfBoundsException ignored) {
+                if (btnText.equals("+") || btnText.equals("-") || btnText.equals("×") || btnText.equals("÷")) {
+                    String[] splittedTextField = textField.getText().split(" ");
+                    if (splittedTextField.length > 1) {
+                        if (textField.getText().contains("+") || splittedTextField[1].equals("-")
+                                || textField.getText().contains("×") || textField.getText().contains("÷")) {
+                            try {
+                                calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], btnText);
+                            } catch (ArrayIndexOutOfBoundsException ignored) {
 
+                            }
+                        } else {
+                            if (textField.getText().length() == 0) {
+                                textField.setText(btnText);
+                            } else {
+                                if (textField.getText().charAt(textField.getText().length() - 1) == ' ') {
+                                    textField.setText(textField.getText() + btnText + " ");
+                                } else {
+                                    textField.setText(textField.getText() + " " + btnText + " ");
+                                }
+                            }
                         }
                     } else {
-                        if (textField.getText().length() == 0) {
-                            textField.setText(btnText);
-                        } else {
-                            if (textField.getText().charAt(textField.getText().length() - 1) == ' ') {
-                                textField.setText(textField.getText() + btnText + " ");
-                            } else {
-                                textField.setText(textField.getText() + " " + btnText + " ");
+                        if (textField.getText().contains("+") || textField.getText().contains("×")
+                                || textField.getText().contains("÷")) {
+                            try {
+                                calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], btnText);
+                            } catch (ArrayIndexOutOfBoundsException ignored) {
+
                             }
+                        } else {
+                            if (textField.getText().length() == 0) {
+                                textField.setText(btnText);
+                            } else {
+                                if (textField.getText().charAt(textField.getText().length() - 1) == ' ') {
+                                    textField.setText(textField.getText() + btnText + " ");
+                                } else {
+                                    textField.setText(textField.getText() + " " + btnText + " ");
+                                }
+                            }
+                        }
+                    }
+                } else if (btnText.equals("=")) {
+                    String[] splittedTextField = textField.getText().split(" ");
+                    if (!textField.getText().isEmpty()) {
+                        try {
+                            calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], "");
+                        } catch (ArrayIndexOutOfBoundsException ignored) {
+
                         }
                     }
                 } else {
-                    if (textField.getText().contains("+") || textField.getText().contains("×") || textField.getText().contains("÷")) {
-                        try {
-                            calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], btnText);
-                        } catch (ArrayIndexOutOfBoundsException ignored) {
-
-                        }
-                    } else {
-                        if (textField.getText().length() == 0) {
-                            textField.setText(btnText);
-                        } else {
-                            if (textField.getText().charAt(textField.getText().length() - 1) == ' ') {
-                                textField.setText(textField.getText() + btnText + " ");
-                            } else {
-                                textField.setText(textField.getText() + " " + btnText + " ");
-                            }
-                        }
-                    }
+                    textField.setText(textField.getText() + btnText);
                 }
-            } else if (btnText.equals("=")) {
-                String[] splittedTextField = textField.getText().split(" ");
-                if (!textField.getText().isEmpty()) {
-                    try {
-                        calculate(splittedTextField[0], splittedTextField[1], splittedTextField[2], "");
-                    } catch (ArrayIndexOutOfBoundsException ignored) {
-
-                    }
-                }
-            } else {
-                textField.setText(textField.getText() + btnText);
-            }
             }
         });
 
@@ -212,16 +221,20 @@ class CalculatorPanel extends JPanel {
             } else {
                 switch (operator) {
                     case "+":
-                        textField.setText(String.valueOf(Double.parseDouble(number1) + Double.parseDouble(number2)) + " " + currentOperator + " ");
+                        textField.setText(String.valueOf(Double.parseDouble(number1) + Double.parseDouble(number2))
+                                + " " + currentOperator + " ");
                         break;
                     case "-":
-                        textField.setText(String.valueOf(Double.parseDouble(number1) - Double.parseDouble(number2)) + " " + currentOperator + " ");
+                        textField.setText(String.valueOf(Double.parseDouble(number1) - Double.parseDouble(number2))
+                                + " " + currentOperator + " ");
                         break;
                     case "×":
-                        textField.setText(String.valueOf(Double.parseDouble(number1) * Double.parseDouble(number2)) + " " + currentOperator + " ");
+                        textField.setText(String.valueOf(Double.parseDouble(number1) * Double.parseDouble(number2))
+                                + " " + currentOperator + " ");
                         break;
                     case "÷":
-                        textField.setText(String.valueOf(Double.parseDouble(number1) / Double.parseDouble(number2)) + " " + currentOperator + " ");
+                        textField.setText(String.valueOf(Double.parseDouble(number1) / Double.parseDouble(number2))
+                                + " " + currentOperator + " ");
                         break;
                     default:
                         break;

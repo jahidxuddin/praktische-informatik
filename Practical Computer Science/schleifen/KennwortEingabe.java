@@ -1,3 +1,5 @@
+package schleifen;
+
 import java.util.Scanner;
 
 public class KennwortEingabe {
@@ -8,7 +10,7 @@ public class KennwortEingabe {
         System.out.println("********************************************");
     }
 
-    public void eingabe() { // Abfrage des Passworts    
+    public void eingabe() { // Abfrage des Passworts
         Scanner scanner = new Scanner(System.in);
 
         String benutzereingabe = "";
@@ -40,7 +42,7 @@ public class KennwortEingabe {
     public static void main(String[] args) {
         KennwortEingabe kennwortEingabe = new KennwortEingabe();
         kennwortEingabe.titel();
-        kennwortEingabe.eingabe(); 
+        kennwortEingabe.eingabe();
         kennwortEingabe.ausgabe();
     }
 }

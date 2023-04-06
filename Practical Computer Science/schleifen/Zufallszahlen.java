@@ -1,7 +1,8 @@
+package schleifen;
+
 import java.util.Scanner;
 
 public class Zufallszahlen {
-    
     static Scanner scanner = new Scanner(System.in);
 
     final int OBERGRENZE = 10;
@@ -15,7 +16,7 @@ public class Zufallszahlen {
         System.out.println("*****************************************************");
     }
 
-    public void eingabe() { // Abfrage der benötigten Daten  
+    public void eingabe() { // Abfrage der benötigten Daten
         int benutzereingabe = 0;
 
         while (benutzereingabe != ZUFALLSZAHL) {
@@ -34,7 +35,7 @@ public class Zufallszahlen {
                 if (5 - versuche == 1) {
                     System.out.println("Die Zahl ist zu niedrig! Sie haben noch " + (5 - versuche) + " Versuch.");
                 } else {
-                    System.out.println("Die Zahl ist zu niedrig! Sie haben noch " + (5 - versuche) + " Versuche."); 
+                    System.out.println("Die Zahl ist zu niedrig! Sie haben noch " + (5 - versuche) + " Versuche.");
                 }
             } else if (benutzereingabe > ZUFALLSZAHL) {
                 if (5 - versuche == 1) {
@@ -44,16 +45,16 @@ public class Zufallszahlen {
                 }
             }
         }
-        
+
     }
 
     public void ausgabe() { // Ausgabe der Ergebnisse
         if (versuche == 1) {
             System.out.println("Sie haben nach " + versuche + " Versuch gewonnen!");
         } else {
-            System.out.println("Sie haben nach " + versuche + " Versuchen gewonnen!"); 
+            System.out.println("Sie haben nach " + versuche + " Versuchen gewonnen!");
         }
-        
+
         System.out.print("\nMöchten Sie noch eine Berechnung durchführen (j/n)? ");
         versuche = 0;
         ZUFALLSZAHL = (int) ((OBERGRENZE - UNTERGRENZE + 1) * Math.random() + UNTERGRENZE);
@@ -64,7 +65,7 @@ public class Zufallszahlen {
         zufallszahlen.titel();
         boolean loop = true;
         while (loop) {
-            zufallszahlen.eingabe(); 
+            zufallszahlen.eingabe();
             zufallszahlen.ausgabe();
             switch (scanner.next()) {
                 case "j":
@@ -79,6 +80,6 @@ public class Zufallszahlen {
             }
         }
         scanner.close();
-    } 
+    }
 
 }

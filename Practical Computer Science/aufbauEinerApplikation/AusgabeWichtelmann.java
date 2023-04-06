@@ -1,12 +1,13 @@
-public class AusgabeWichtelmann {    
-  
+package aufbauEinerApplikation;
+
+public class AusgabeWichtelmann {
        public static void main(String[] args) {
               System.out.println("   /\\");
               System.out.println("  /  \\");
               System.out.println(" /    \\");
-              System.out.println("/      \\");  
+              System.out.println("/      \\");
               System.out.println("--------");
-              System.out.println("| \"  \" |");              
+              System.out.println("| \"  \" |");
               System.out.println("|  \'\'  |");
               System.out.println("| ---- |");
               System.out.println("--------");

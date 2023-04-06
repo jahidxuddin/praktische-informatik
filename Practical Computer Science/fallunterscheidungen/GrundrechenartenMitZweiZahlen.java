@@ -1,3 +1,5 @@
+package fallunterscheidungen;
+
 import java.util.Scanner;
 
 /*
@@ -5,7 +7,6 @@ import java.util.Scanner;
 */
 
 public class GrundrechenartenMitZweiZahlen {
-
     double zahl1;
     double zahl2;
     String eingabeAuswahl;

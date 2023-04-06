@@ -1,3 +1,5 @@
+package aufbauEinerApplikation;
+
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
@@ -6,7 +8,6 @@ import java.text.DecimalFormat;
 */
 
 public class Notenberechnung {
-
     int note1;
     int note2;
     int note3;
@@ -27,7 +28,7 @@ public class Notenberechnung {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\nNoteneingabe:");
-        
+
         System.out.print("Bitte geben Sie die Anzahl der Note 1 ein: ");
         note1 = scanner.nextInt();
 
@@ -50,15 +51,14 @@ public class Notenberechnung {
     }
 
     public void berechnen() { // Berechnung des Notendurchschnitts
-        anzahlSchüler = note1 + note2 + note3 + note4 + note5 + note6; 
+        anzahlSchüler = note1 + note2 + note3 + note4 + note5 + note6;
 
-        DecimalFormat formatter = new DecimalFormat("#.##");  
+        DecimalFormat formatter = new DecimalFormat("#.##");
         notendurchschnitt = formatter.format(
-            (note1 * 1 + note2 * 2 + note3 * 3 + note4 * 4 + note5 * 5 + note6 * 6) / (float) anzahlSchüler
-        );
+                (note1 * 1 + note2 * 2 + note3 * 3 + note4 * 4 + note5 * 5 + note6 * 6) / (float) anzahlSchüler);
     }
 
-    public void ausgabe() { // Ausgabe der Ergebnisse 
+    public void ausgabe() { // Ausgabe der Ergebnisse
         System.out.println("\nAuswertung:");
         System.out.println("Insgesamt haben Schüler " + anzahlSchüler + " an der Klassen-");
         System.out.println("arbeit teilgenommen.\n");
@@ -69,7 +69,7 @@ public class Notenberechnung {
         System.out.println("Note 4: " + note4 + " Schüler");
         System.out.println("Note 5: " + note5 + " Schüler");
         System.out.println("Note 6: " + note6 + " Schüler\n");
-        
+
         System.out.println("Der Notendurchschnitt beträgt: " + notendurchschnitt + ".");
     }
 

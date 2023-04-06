@@ -1,3 +1,5 @@
+package schleifen;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -6,7 +8,6 @@ import java.util.Scanner;
 */
 
 public class Abzahlungsdarlehen {
-    
     static Scanner scanner = new Scanner(System.in);
     DecimalFormat df1 = new DecimalFormat(",#");
     DecimalFormat df2 = new DecimalFormat(",##");
@@ -26,7 +27,7 @@ public class Abzahlungsdarlehen {
         System.out.println("******************************************************************");
     }
 
-    public void eingabe() { // Abfrage der benötigten Daten  
+    public void eingabe() { // Abfrage der benötigten Daten
         System.out.print("Bitte geben Sie den Kreditbetrag ein: ");
         kreditbetrag = scanner.nextDouble();
         System.out.print("Bitte geben Sie den Zinssatz ein: ");
@@ -47,7 +48,8 @@ public class Abzahlungsdarlehen {
             annuität = zinsen + tilgung;
             summeAnuität += annuität;
             summeTilgung += tilgung;
-            ausgabe += "\n" + i + "\t" + restKapital + "\t\t" + zinsen + "\t" + tilgung + "\t" + annuität + "\t\t" + (restKapital -= tilgung); 
+            ausgabe += "\n" + i + "\t" + restKapital + "\t\t" + zinsen + "\t" + tilgung + "\t" + annuität + "\t\t"
+                    + (restKapital -= tilgung);
         }
         anteilKreditbetrag = summeZinsen / (kreditbetrag / 100);
     }
@@ -57,7 +59,8 @@ public class Abzahlungsdarlehen {
         System.out.println("Zinssatz: " + zinssatz + " %");
         System.out.println("Laufzeit: " + laufzeitInJahren + " Jahre\n");
         System.out.println(ausgabe);
-        System.out.println("\nSumme Zinsen: " + summeZinsen + " (= " + anteilKreditbetrag + " % vom ursprünglichen Kreditbetrag)");
+        System.out.println(
+                "\nSumme Zinsen: " + summeZinsen + " (= " + anteilKreditbetrag + " % vom ursprünglichen Kreditbetrag)");
         System.out.println("Summe Tilgung: " + summeTilgung);
         System.out.println("Summe Annuität: " + summeAnuität);
     }
@@ -78,5 +81,5 @@ public class Abzahlungsdarlehen {
             loop = scanner.next().charAt(0);
         }
         scanner.close();
-    } 
+    }
 }

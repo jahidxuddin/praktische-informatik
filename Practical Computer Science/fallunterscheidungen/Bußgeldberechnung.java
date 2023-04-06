@@ -1,3 +1,5 @@
+package fallunterscheidungen;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -6,7 +8,6 @@ import java.util.Scanner;
 */
 
 public class Bußgeldberechnung {
-
     String eingabeAuswahl;
     double erlaubteHöchstgeschwindigkeit;
     double gefahreneGeschwindigkeit;
@@ -68,7 +69,7 @@ public class Bußgeldberechnung {
                     konsequenzen = "Sie müssen 400,00 Euro bezahlen, bekommen 2 Strafpunkte\nund 1 Monat Fahrverbot.";
                 } else if (geschwindigkeitsübertretung >= 30) {
                     konsequenzen = "Sie müssen 260,00 Euro bezahlen, bekommen 2 Strafpunkte\nund 1 Monat Fahrverbot.";
-                } else if (geschwindigkeitsübertretung >= 25) {    
+                } else if (geschwindigkeitsübertretung >= 25) {
                     konsequenzen = "Sie müssen 180,00 Euro bezahlen, bekommen 1 Strafpunkt.";
                 } else if (geschwindigkeitsübertretung >= 20) {
                     konsequenzen = "Sie müssen 115,00 Euro bezahlen, bekommen 1 Strafpunkt.";
@@ -112,7 +113,8 @@ public class Bußgeldberechnung {
     public void ausgabe() { // Ausgabe der Ergenisse
         System.out.println("\nAusgabe:");
         System.out.println("*********************************************************");
-        System.out.println("Sie haben sich nicht an die Vorschriften gehalten und\nsind außerorts " + formatter.format(geschwindigkeitsübertretung) + " km/h zu schnell gefahren.\n");
+        System.out.println("Sie haben sich nicht an die Vorschriften gehalten und\nsind außerorts "
+                + formatter.format(geschwindigkeitsübertretung) + " km/h zu schnell gefahren.\n");
         System.out.println(konsequenzen);
     }
 
@@ -122,5 +124,5 @@ public class Bußgeldberechnung {
         bußgeldberechnung.eingabe();
         bußgeldberechnung.berechnen();
         bußgeldberechnung.ausgabe();
-    }   
+    }
 }

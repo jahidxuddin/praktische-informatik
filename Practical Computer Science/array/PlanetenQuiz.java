@@ -1,3 +1,5 @@
+package array;
+
 import java.util.Scanner;
 
 /*
@@ -7,9 +9,9 @@ import java.util.Scanner;
 public class PlanetenQuiz {
     static Scanner scanner = new Scanner(System.in);
 
-    final String[] planetenLösungen = { "Merkur", "Uranus", "Venus", "Neptun", "Erde", "Saturn", "Mars", "Jupiter"};
+    final String[] planetenLösungen = { "Merkur", "Uranus", "Venus", "Neptun", "Erde", "Saturn", "Mars", "Jupiter" };
     String[] eingebenePlaneten;
-    String ergebnis = ""; 
+    String ergebnis = "";
 
     public void titel() {
         System.out.println("*********************************************");
@@ -48,7 +50,7 @@ public class PlanetenQuiz {
 
     public void verarbeitung() {
         ergebnis = "\nVon den " + eingebenePlaneten.length + " eingebenen Planeten sind ";
-    
+
         int richtigEingegeben = 0;
         for (int i = 0; i < planetenLösungen.length; i++) {
             for (int j = 0; j < eingebenePlaneten.length; j++) {

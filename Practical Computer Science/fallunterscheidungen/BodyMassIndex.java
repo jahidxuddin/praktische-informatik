@@ -1,3 +1,5 @@
+package fallunterscheidungen;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -6,7 +8,6 @@ import java.util.Scanner;
 */
 
 public class BodyMassIndex {
-
     double gewicht;
     double körpergröße;
 
@@ -57,5 +58,5 @@ public class BodyMassIndex {
         bodyMassIndex.eingabe();
         bodyMassIndex.berechnen();
         bodyMassIndex.ausgabe();
-    } 
-}  
+    }
+}

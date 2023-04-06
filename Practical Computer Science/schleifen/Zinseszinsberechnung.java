@@ -1,3 +1,5 @@
+package schleifen;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -6,7 +8,7 @@ import java.util.Scanner;
 */
 
 public class Zinseszinsberechnung {
-    
+
     static Scanner scanner = new Scanner(System.in);
     DecimalFormat formatter = new DecimalFormat("#.##");
 
@@ -24,7 +26,7 @@ public class Zinseszinsberechnung {
         System.out.println("*****************************************************\n");
     }
 
-    public void eingabe() { // Abfrage der benötigten Daten    
+    public void eingabe() { // Abfrage der benötigten Daten
         System.out.print("Bitte geben Sie Ihr Kapital ein: ");
         startKapital = scanner.nextDouble();
 
@@ -44,7 +46,9 @@ public class Zinseszinsberechnung {
     }
 
     public void ausgabe() { // Ausgabe der Zinsen
-        System.out.println("\nStartkapital: " + startKapital + " Euro\nZinssatz: " + zinssatz + " %\nAnlagedauer: " + anlageDauerInJahre + jahreZusatz + "\nZinsen: " + formatter.format(zinsen) + " Euro \nEndkapital: " + formatter.format(endKapital) + " Euro");
+        System.out.println("\nStartkapital: " + startKapital + " Euro\nZinssatz: " + zinssatz + " %\nAnlagedauer: "
+                + anlageDauerInJahre + jahreZusatz + "\nZinsen: " + formatter.format(zinsen) + " Euro \nEndkapital: "
+                + formatter.format(endKapital) + " Euro");
         System.out.print("\nMöchten Sie noch eine Berechnung durchführen (j/n)? ");
     }
 
@@ -53,11 +57,11 @@ public class Zinseszinsberechnung {
         zinseszinsberechnung.titel();
         char loop = 'J';
         while (loop == 'J' || loop == 'j') {
-            zinseszinsberechnung.eingabe(); 
+            zinseszinsberechnung.eingabe();
             zinseszinsberechnung.berechnen();
             zinseszinsberechnung.ausgabe();
             loop = scanner.next().charAt(0);
         }
         scanner.close();
-    } 
+    }
 }

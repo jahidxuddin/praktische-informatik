@@ -1,3 +1,5 @@
+package fallunterscheidungen;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -6,7 +8,6 @@ import java.util.Scanner;
 */
 
 public class BerechnungKörpergröße {
-
     double oberschenkellänge;
     int alter;
     String geschlecht;
@@ -14,7 +15,7 @@ public class BerechnungKörpergröße {
     double körpergröße;
 
     DecimalFormat formatter = new DecimalFormat("#.##");
- 
+
     public void titel() {
         System.out.println("********************************************");
         System.out.println("\t   Berechnung Körpergröße");
@@ -29,7 +30,7 @@ public class BerechnungKörpergröße {
 
         System.out.print("Wie alt sind Sie? ");
         alter = scanner.nextInt();
-        
+
         System.out.print("Sind Sie männlich (1) oder weiblich (2)? ");
         geschlecht = scanner.next();
 
@@ -43,7 +44,7 @@ public class BerechnungKörpergröße {
         } else if (geschlecht.equals("2")) {
             geschlecht = "weiblich";
             körpergröße = 2 * oberschenkellänge + 0.61417;
-        } 
+        }
 
         if (alter > 30) {
             körpergröße = körpergröße - 0.0006 * (alter - 30);
@@ -62,6 +63,6 @@ public class BerechnungKörpergröße {
         berechnungKörpergröße.titel();
         berechnungKörpergröße.eingabe();
         berechnungKörpergröße.berechnen();
-        berechnungKörpergröße.ausgabe();    
+        berechnungKörpergröße.ausgabe();
     }
 }

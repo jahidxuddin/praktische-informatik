@@ -1,0 +1,23 @@
+body {
+    background-image: url("./img/wallpaper.jpg");
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+}
+
+.box {
+    background-color: white;
+    height: 100%;
+}
+
+.box div {
+    background-color: lightblue;
+    height: 100%;
+    color: green;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zusammenfassende Übung 3</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="left">
+        <img onclick="window.location.href = '/'" src="./icons/logo.svg" alt="Logo" width="176" height="44" />
+        <nav>
+          <a href="#">SHOP</a>
+          <a href="#">COMMUNITY</a>
+          <a href="#">INFO</a>
+          <a href="#">SUPPORT</a>
+        </nav>
+      </div>
+      <div class="right">
+        <button class="install-steam">
+          <img
+            src="https://store.akamai.steamstatic.com/public/shared/images/header/btn_header_installsteam_download.png?v=1"
+            alt="Install steam"
+          />
+          Steam installieren
+        </button>
+        <button>Anmelden</button>
+        <span>|</span>
+        <select name="Sprache" id="language">
+          <option>Sprache</option>
+        </select>
+      </div>
+    </header>
+    <main>
+      <div class="searchbar">
+        <a href="#">Ihr Shop</a>
+        <a href="#">Neu und nennenswert</a>
+        <a href="#">Kategorien</a>
+        <a href="#">Punkteshop</a>
+        <a href="#">Neuigkeiten</a>
+        <a href="#">Laboratorien</a>
+        <div class="input-group">
+          <input
+            type="text"
+            name="searchbar"
+            id="searchbar"
+            placeholder="Suchen"
+          />
+          <img
+            src="https://store.akamai.steamstatic.com/public/images/v6/search_icon_btn.png"
+          />
+        </div>
+      </div>
+      <video
+        loop=""
+        muted=""
+        autoplay=""
+        playsinline=""
+        poster="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/4cfd543173e5827c083ff3f0/page_bg_german.jpg?t=1684515665"
+        class="fullscreen-bg__video"
+      >
+        <source
+          src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/4cfd543173e5827c083ff3f0/webm_page_bg_german.webm?t=1684515665"
+          type="video/webm"
+        />
+        <source
+          src="https://cdn.akamai.steamstatic.com/steam/clusters/frontpage/4cfd543173e5827c083ff3f0/mp4_page_bg_german.mp4?t=1684515665"
+          type="video/mp4"
+        />
+      </video>
+    </main>
+  </body>
+</html>

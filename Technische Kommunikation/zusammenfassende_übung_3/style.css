@@ -1,0 +1,152 @@
+@font-face {
+  font-family: MotivaSans;
+  src: url("./fonts/motiva-sans-cufonfonts/MotivaSansRegular.woff.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: MotivaSans;
+  background-color: #1b2838;
+}
+
+header {
+  width: 100%;
+  height: 104px;
+  background-color: #171a21;
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+}
+
+header .left {
+  display: flex;
+  align-items: center;
+}
+
+header .left img {
+  cursor: pointer;
+}
+
+header .left button {
+  background-color: transparent;
+  border: none;
+  color: #b8b6b4;
+  cursor: pointer;
+}
+
+header .left button:hover {
+  color: white;
+}
+
+header .right {
+  display: flex;
+  align-items: start;
+  gap: 5px;
+  color: #b8b6b4;
+  margin-top: 5px;
+}
+
+header .right button, select, span {
+  background-color: transparent;
+  border: none;
+  color: #b8b6b4;
+  padding: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+header .right span {
+  cursor: default !important;
+}
+
+header .right button:hover, select:hover {
+  color: #fff;
+}
+
+.install-steam {
+  background-color: #5c7e10 !important;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav {
+  display: flex;
+  gap: 7px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #b8b6b4;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+main {
+  position: relative;
+}
+
+main video {
+  width: 100%;
+}
+
+.searchbar {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 35px;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(
+    90deg,
+    rgba(62, 103, 150, 0.919) 11.38%,
+    rgba(58, 120, 177, 0.8) 25.23%,
+    rgb(15, 33, 110) 100%
+  );
+}
+
+.searchbar a {
+  text-decoration: none;
+  color: #e5e5e5;
+  padding: 1px;
+  font-size: 13px;
+  font-weight: bold;
+  text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group input {
+  text-shadow: 1px 1px 0px rgba( 255, 255, 255, 0.1);
+  background-color: rgba(96, 133, 155, 0.979);
+  border: 1px solid rgba( 0, 0, 0, 0.3);
+  padding: 3.75px;
+  padding-left: 20px;
+  font-weight: 300;
+  outline: none;
+}
+
+.input-group img {
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
+}
+
+.input-group img:hover {
+  filter: brightness(1.10);
+}

@@ -5,22 +5,27 @@
 
 body {
     background-color: blue;
-    padding: 10px;
+    width: 100%;
 }
 
 header {
     background-color: yellow;
     color: red;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100%;
 }
 
 main {
     background-image: url("./img/Bild1.png");
     background-repeat: no-repeat;
-    background-size: 1920 1080;
+    background-size: auto;
+    height: 100vh;
 }
 
 main ol {
-    padding-top: 25px;
+    padding-top: 65px;
     padding-bottom: 25px;
     padding-left: 50px;
 }

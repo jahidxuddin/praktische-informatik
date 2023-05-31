@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: blue;
+    padding: 10px;
+}
+
+header {
+    background-color: yellow;
+    color: red;
+}
+
+main {
+    background-image: url("./img/Bild1.png");
+    background-repeat: no-repeat;
+    background-size: 1920 1080;
+}
+
+main ol {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 50px;
+}

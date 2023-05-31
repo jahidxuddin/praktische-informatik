@@ -1,0 +1,59 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-repeat: no-repeat;
+  padding-left: 30px;
+  background-size: 15px 15px; 
+}
+
+#merkur {
+  background-image: url("./icons/merkur.png");
+}
+
+#venus {
+  background-image: url("./icons/venus.png");
+}
+
+#erde {
+  background-image: url("./icons/earth.png");
+}
+
+#mars {
+  background-image: url("./icons/mars.png");
+}
+
+#jupiter {
+  background-image: url("./icons/jupiter.png");
+}
+
+#saturn {
+  background-image: url("./icons/saturn.png");
+}
+
+#uranus {
+  background-image: url("./icons/uranus.png");
+}
+
+#neptun {
+  background-image: url("./icons/neptune.png");
+}
+
+#pluto {
+  background-image: url("./icons/pluto.png");
+}
+
+#quaoar {
+  background-image: url("./icons/quaoar.png");
+}
+
+#dw {
+  background-image: url("./icons/2004-dw.png");
+}
+
+#sedna {
+  background-image: url("./icons/merkur.png");
+}

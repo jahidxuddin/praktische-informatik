@@ -1,0 +1,16 @@
+h1 {
+  border-style: dotted dashed solid double;
+}
+
+h2 {
+  border: double red 50px;
+  color: blue;
+}
+
+h3 {
+  border: groove blue 30px;
+}
+
+h4 {
+  border: inset yellow 15px;
+}

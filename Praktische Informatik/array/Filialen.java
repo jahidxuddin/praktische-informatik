@@ -9,7 +9,7 @@ public class Filialen {
   static Scanner scanner = new Scanner(System.in);
 
   double[][] filialen;
-  double[] summeAllerFilialen = new double[5];
+  double[] summeEinesQuartal = new double[5];
 
   public void titel() {
     System.out.println("*********************************************");
@@ -41,7 +41,7 @@ public class Filialen {
 
     for (int i = 0; i < filialen.length; i++) {
       for (int j = 0; j < filialen[i].length; j++) {
-        summeAllerFilialen[j] += filialen[i][j];
+        summeEinesQuartal[j] += filialen[i][j];
       }
     }
   }
@@ -56,9 +56,9 @@ public class Filialen {
                     + filialen[i][3] + " TEUR\t" + filialen[i][4] + " TEUR");
         }
         System.out.println("------------------------------------------------------------------------------------------");
-        System.out.println("Summe" + "\t\t" + summeAllerFilialen[0] + " TEUR\t" + summeAllerFilialen[1] + " TEUR\t"
-                + summeAllerFilialen[2]
-                + " TEUR\t" + summeAllerFilialen[3] + " TEUR\t" + summeAllerFilialen[4] + " TEUR\t");
+        System.out.println("Summe" + "\t\t" + summeEinesQuartal[0] + " TEUR\t" + summeEinesQuartal[1] + " TEUR\t"
+                + summeEinesQuartal[2]
+                + " TEUR\t" + summeEinesQuartal[3] + " TEUR\t" + summeEinesQuartal[4] + " TEUR\t");
         System.out.println("==========================================================================================");
   }
 

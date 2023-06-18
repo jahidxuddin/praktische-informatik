@@ -54,6 +54,7 @@ public class TicTacToe {
     if (feld == 'X' || feld == 'O') {
       System.out.println("\nFeld ist bereits belegt!\n");
       setzeSpielstein();
+      return;
     }
     spielfeld[y][x] = aktuellerSpieler;
   }

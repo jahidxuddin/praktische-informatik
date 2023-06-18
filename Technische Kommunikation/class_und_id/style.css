@@ -1,0 +1,19 @@
+ol {
+  list-style: lower-alpha;
+}
+
+#chipsatz ol {
+  font-style: italic;
+}
+
+#chipsatz span {
+  color: blue;
+}
+
+#kühlungsarten ol {
+  font-weight: bold;
+}
+
+#kühlungsarten span {
+  color: red;
+}

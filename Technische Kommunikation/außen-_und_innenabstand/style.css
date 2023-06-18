@@ -1,0 +1,15 @@
+body {
+  background-color: lightgrey;
+  padding: 150px 200px 30px 60px;
+}
+
+h1 {
+  color: blue;
+  background-color: yellow;
+  padding: 10px 0px 10px 15px;
+}
+
+p {
+  font-style: italic;
+  margin: 5px 50px 5px 50px;
+}

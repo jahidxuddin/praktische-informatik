@@ -1,0 +1,18 @@
+a {
+    color: blue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a:hover {
+    color: orange;
+    background-color: yellow;
+    font-style: italic;
+    letter-spacing: 10pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+a:visited {
+    color: red;
+}

@@ -46,13 +46,13 @@ Manchmal sollte man Leichtigkeit nicht über Lesbarkeit stellen.
 ## DON'T TO THIS:
 ```java
 public class beispiel-Klasse {
-
+    // ...
 }
 ```
 ## DO THIS:
 ```java
 public class BeispielKlasse {
-
+    // ...
 }
 ```
 

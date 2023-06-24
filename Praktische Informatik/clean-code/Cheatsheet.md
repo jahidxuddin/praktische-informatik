@@ -56,7 +56,7 @@ public class BeispielKlasse {
 }
 ```
 
-## DON'T TO THIS:
+## DON'T DO THIS:
 ```java
 String summe_summe;
 ```

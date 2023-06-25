@@ -30,6 +30,13 @@ header nav {
     gap: 20px;
 }
 
+header img {
+    display: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
 main {
     background-color: white;
 }
@@ -49,4 +56,18 @@ footer {
     align-items: center;
     gap: 20px;
     height: 100px;
+}
+
+@media only screen and (max-width: 750px) {
+    header h1 {
+        font-size: larger;
+    }
+
+    header nav {
+        display: none;
+    }
+
+    header img {
+        display: block;
+    }
 }

@@ -1,4 +1,4 @@
-package parameterübergabeAnEineMethode;
+package parameteruebergabeAnEineMethode;
 
 import java.util.Scanner;
 
@@ -6,6 +6,7 @@ import java.util.Scanner;
     Parameterübergabe mit Rückgabewert
 */
 
+@SuppressWarnings("NonAsciiCharacters")
 public class ParameterübergabeMitRückgabewert {
     Scanner scanner = new Scanner(System.in);
 
@@ -43,13 +44,13 @@ public class ParameterübergabeMitRückgabewert {
         System.out.println("\nTestergebnis: " + zahl + " ist durch " + divisor
                 + (!teilbarkeit(zahl, divisor) ? " nicht " : " ") + "glatt teilbar!");
         System.out.println("\nDie Zahl " + zahl + " ist durch folgende Zahlen teilbar:");
-        String ausgabe = "";
+        StringBuilder ausgabe = new StringBuilder();
         int[] teilbarkeitsZahlen = teilbarkeit(zahl);
-        for (int i = 0; i < teilbarkeitsZahlen.length; i++) {
-            if (teilbarkeitsZahlen[i] == 0) {
+        for (int j : teilbarkeitsZahlen) {
+            if (j == 0) {
                 continue;
             }
-            ausgabe += teilbarkeitsZahlen[i] + " ";
+            ausgabe.append(j).append(" ");
         }
         System.out.println(ausgabe);
     }

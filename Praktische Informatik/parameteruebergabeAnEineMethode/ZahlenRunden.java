@@ -1,4 +1,4 @@
-package parameterübergabeAnEineMethode;
+package parameteruebergabeAnEineMethode;
 
 import java.util.Scanner;
 

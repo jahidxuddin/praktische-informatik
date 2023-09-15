@@ -12,7 +12,7 @@ public class Rechteck {
     private double b;
 
     public double getA() {
-        return this.a;
+        return a;
     }
 
     public void setA(double a) {
@@ -20,7 +20,7 @@ public class Rechteck {
     }
 
     public double getB() {
-        return this.b;
+        return b;
     }
 
     public void setB(double b) {
@@ -28,18 +28,24 @@ public class Rechteck {
     }
 
     public double berechneFlaeche() {
-        return this.a * this.b;
-    }
-
-    public double berechneFlaeche(double a, double b) {
         return a * b;
     }
 
+    public double berechneFlaeche(double a, double b) {
+        this.a = a;
+        this.b = b;
+
+        return this.a * this.b;
+    }
+
     public double berechneUmfang() {
-        return 2 * this.a + 2 * this.b;
+        return 2 * a + 2 * b;
     }
 
     public double berechneUmfang(double a, double b) {
-        return 2 * a + 2 * b;
+        this.a = a;
+        this.b = b;
+
+        return 2 * this.a + 2 * this.b;
     }
 }

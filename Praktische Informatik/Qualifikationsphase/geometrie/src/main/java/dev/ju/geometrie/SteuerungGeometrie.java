@@ -1,8 +1,13 @@
-package dev.ju;
+package dev.ju.geometrie;
+
+import dev.ju.geometrie.formen.Kreis;
+import dev.ju.geometrie.formen.Rechteck;
+import dev.ju.geometrie.koerper.Kugel;
+import dev.ju.geometrie.koerper.Quader;
 
 import java.util.Scanner;
 
-public class SteuerungFormen {
+public class SteuerungGeometrie {
     private Rechteck rechteck;
     private Kreis kreis;
     private Kugel kugel;
@@ -62,8 +67,8 @@ public class SteuerungFormen {
     }
 
     public static void main(String[] args) {
-        SteuerungFormen steuerungFormen = new SteuerungFormen();
-        steuerungFormen.eingabe();
-        steuerungFormen.ausgabe();
+        SteuerungGeometrie steuerungGeometrie = new SteuerungGeometrie();
+        steuerungGeometrie.eingabe();
+        steuerungGeometrie.ausgabe();
     }
 }

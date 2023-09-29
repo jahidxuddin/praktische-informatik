@@ -3,18 +3,19 @@ package dev.ju.bank;
 /**
  *
  * Diese Klasse dient zur Darstellung eines Kunden
- * @version 1.0 from 22.09.2023
+ * @version 2.0 from 29.09.2023
  * @author Jahid Uddin
  */
 
 public class Kunde {
     private int kundenNr;
     private String kundenName;
-    private Konto konto;
+    private final Konto[] konten;
 
     public Kunde(int kundenNr, String kundenName) {
         this.kundenNr = kundenNr;
         this.kundenName = kundenName;
+        this.konten = new Konto[3];
     }
 
     public int getKundenNr() {
@@ -33,11 +34,43 @@ public class Kunde {
         this.kundenName = kundenName;
     }
 
-    public void neuesKontoAnlegen(Konto konto) {
-        this.konto = konto;
+    public boolean neuesKontoAnlegen(Konto konto) {
+        for (int i = 0; i < konten.length; i++) {
+            if (konten[i] == null) {
+                konten[i] = konto;
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public String kontoUebersicht() {
-        return this.kundenName + "(Kundennummer: " + this.kundenNr + ") hat das " + this.konto.getKontoTyp() + " " + this.konto.getKontoNr() + ".";
+    public String kontenUebersicht() {
+        if (this.konten[0] == null) {
+            return "---";
+        }
+
+        StringBuilder kontenUebersicht = new StringBuilder();
+
+        for (int i = 0; i < this.konten.length; i++) {
+            Konto konto = this.konten[i];
+
+            if (konto == null) {
+                break;
+            }
+
+            if (i > 0) {
+                kontenUebersicht.append("\n");
+            }
+
+            kontenUebersicht
+                    .append((i + 1))
+                    .append(". Konto: ")
+                    .append(konto.getKontoTyp())
+                    .append(" ")
+                    .append(konto.getKontoNr());
+        }
+
+        return kontenUebersicht.toString();
     }
 }

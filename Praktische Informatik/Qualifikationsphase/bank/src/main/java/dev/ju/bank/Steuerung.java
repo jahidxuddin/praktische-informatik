@@ -1,13 +1,11 @@
 package dev.ju.bank;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Steuerung {
-    private final List<Kunde> kunden = new ArrayList<>();
+    private Kunde kunde;
 
-    public Kunde eingabeNeueKundenDaten() {
+    public void eingabeNeueKundenDaten() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("\nName des Kontoinhabers: ");
@@ -15,46 +13,61 @@ public class Steuerung {
         System.out.print("Eingabe Kundennr: ");
         int kundenNr = scanner.nextInt();
 
-        return new Kunde(kundenNr, kundenName);
+        this.kunde = new Kunde(kundenNr, kundenName);
     }
 
-    public void eingabeNeuesKontoAnlegen(Kunde kunde) {
+    public void eingabeNeuesKontoAnlegen() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Eingabe KontoNr: ");
+        System.out.println("\n\nKontoeröffnung");
+
+        System.out.print("Eingabe Kontonummer: ");
         String kontoNr = scanner.next();
         System.out.print("Eingabe Kontotyp: ");
         String kontoTyp = scanner.next();
 
-        kunde.neuesKontoAnlegen(new Konto(kontoNr, kontoTyp));
+        boolean hatMaximaleKontonlaengeErreicht = this.kunde.neuesKontoAnlegen(new Konto(kontoNr, kontoTyp));
+
+        if (hatMaximaleKontonlaengeErreicht) {
+            System.out.println("\n\nMaximale Konten Anzahl erreicht. Weitere Konten können nicht angelegt werden.");
+        }
     }
 
-    public void eingabe() {
+    public void kontenUebersicht() {
+        System.out.println("\n\nKontenübersicht");
+        System.out.println(kunde.getKundenName() + " hat folgende Konten:");
+        System.out.println(kunde.kontenUebersicht());
+    }
+
+    public void auswahlmenue() {
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            Kunde kunde = eingabeNeueKundenDaten();
-            kunden.add(kunde);
-            eingabeNeuesKontoAnlegen(kunde);
+        System.out.println("\n\nAuswahlmenü");
+        System.out.println("Neues Konto eröffnen:   ---> 1");
+        System.out.println("Kontenübersicht:        ---> 2");
+        System.out.println("Programmbeenden:        ---> 0");
+        System.out.print("Auswahleingabe:              ");
 
-            System.out.print("\nMöchten Sie einen weiteren Kunden anlegen? (j,n) ");
-            char eingabe = scanner.next().charAt(0);
-            if (eingabe == 'n' || eingabe == 'N') {
+        switch (scanner.nextInt()) {
+            case 1: {
+                eingabeNeuesKontoAnlegen();
                 break;
+            }
+            case 2: {
+                kontenUebersicht();
+                break;
+            }
+            case 0: {
+                return;
             }
         }
 
-        scanner.close();
-    }
-
-    public void ausgabe() {
-        System.out.println("\nKontenübersicht:");
-        kunden.forEach((kunde) -> System.out.println(kunde.kontoUebersicht()));
+        auswahlmenue();
     }
 
     public static void main(String[] args) {
         Steuerung steuerung = new Steuerung();
-        steuerung.eingabe();
-        steuerung.ausgabe();
+        steuerung.eingabeNeueKundenDaten();
+        steuerung.auswahlmenue();
     }
 }

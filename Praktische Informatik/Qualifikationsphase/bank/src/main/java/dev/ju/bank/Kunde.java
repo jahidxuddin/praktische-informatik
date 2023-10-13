@@ -1,9 +1,11 @@
 package dev.ju.bank;
 
+import java.util.Arrays;
+
 /**
  *
  * Diese Klasse dient zur Darstellung eines Kunden
- * @version 2.0 from 29.09.2023
+ * @version 3.0 from 11.10.2023
  * @author Jahid Uddin
  */
 
@@ -38,22 +40,59 @@ public class Kunde {
         for (int i = 0; i < konten.length; i++) {
             if (konten[i] == null) {
                 konten[i] = konto;
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
+    }
+
+    public double abfrageKontoStand(String kontoNr) {
+        for (Konto konto : konten) {
+            if (konto != null && konto.getKontoNr().equals(kontoNr)) {
+                return konto.getKontoStand();
+            }
+        }
+
+        return Double.NaN;
+    }
+
+    public boolean auszahlen(String kontoNr, double betrag) {
+        for (Konto konto : konten) {
+            if (konto != null && konto.getKontoNr().equals(kontoNr)) {
+                return konto.auszahlen(betrag);
+            }
+        }
+
+        return false;
+    }
+
+    public boolean einzahlen(String kontoNr, double betrag) {
+        for (Konto konto : konten) {
+            if (konto != null && konto.getKontoNr().equals(kontoNr)) {;
+                return konto.einzahlen(betrag);
+            }
+        }
+
+        return false;
+    }
+
+    public boolean loescheKonto(String kontoNr) {
+        for (int i = 0; i < konten.length; i++) {
+            if (konten[i] != null && konten[i].getKontoNr().equals(kontoNr)) {
+                konten[i] = null;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public String kontenUebersicht() {
-        if (this.konten[0] == null) {
-            return "---";
-        }
-
         StringBuilder kontenUebersicht = new StringBuilder();
 
-        for (int i = 0; i < this.konten.length; i++) {
-            Konto konto = this.konten[i];
+        for (int i = 0; i < konten.length; i++) {
+            Konto konto = konten[i];
 
             if (konto == null) {
                 break;

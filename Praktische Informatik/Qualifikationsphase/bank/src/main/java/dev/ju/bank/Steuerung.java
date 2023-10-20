@@ -53,10 +53,9 @@ public class Steuerung {
 
         if (Double.isNaN(aktuellerKontostand)) {
             System.out.println("\n\nDas Konto mit der Kontonummer " + kontoNr + " konnte nicht gefunden werden.");
-            return;
+        } else {
+            System.out.println("\n\nDer Kontostand, des Kontos mit der Kontonummer " + kontoNr + ", beträgt: " + aktuellerKontostand);
         }
-
-        System.out.println("\n\nDer Kontostand, des Kontos mit der Kontonummer " + kontoNr + ", beträgt: " + aktuellerKontostand);
     }
 
     public void einzahlen() {

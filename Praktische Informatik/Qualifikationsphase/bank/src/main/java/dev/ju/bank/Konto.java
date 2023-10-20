@@ -3,7 +3,7 @@ package dev.ju.bank;
 /**
  *
  * Diese Klasse dient zur Darstellung eines Kontos
- * @version 2.0 from 11.10.2023
+ * @version 3.0 from 18.10.2023
  * @author Jahid Uddin
  */
 
@@ -57,13 +57,7 @@ public class Konto {
         return true;
     }
 
-    public boolean einzahlen(double betrag) {
-        if (betrag < 0) {
-            return false;
-        }
-
-        this.kontoStand += betrag;
-
-        return true;
+    public void einzahlen(double betrag) {
+        this.kontoStand += Math.abs(betrag);
     }
 }

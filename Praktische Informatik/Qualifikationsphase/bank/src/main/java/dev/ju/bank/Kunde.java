@@ -1,7 +1,5 @@
 package dev.ju.bank;
 
-import java.util.Arrays;
-
 /**
  *
  * Diese Klasse dient zur Darstellung eines Kunden
@@ -69,8 +67,9 @@ public class Kunde {
 
     public boolean einzahlen(String kontoNr, double betrag) {
         for (Konto konto : konten) {
-            if (konto != null && konto.getKontoNr().equals(kontoNr)) {;
-                return konto.einzahlen(betrag);
+            if (konto != null && konto.getKontoNr().equals(kontoNr)) {
+                konto.einzahlen(betrag);
+                return true;
             }
         }
 

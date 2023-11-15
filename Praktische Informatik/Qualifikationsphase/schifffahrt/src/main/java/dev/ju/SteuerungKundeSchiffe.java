@@ -3,7 +3,11 @@ package dev.ju;
 import java.util.Scanner;
 
 public class SteuerungKundeSchiffe {
-    private final Kunde[] kunden = new Kunde[42];
+    private final Kunde[] kunden;
+
+    public SteuerungKundeSchiffe() {
+        this.kunden = new Kunde[42];
+    }
 
     public Kunde findeKunde(int kundenNr) {
         for (Kunde kunde : kunden) {
@@ -71,12 +75,14 @@ public class SteuerungKundeSchiffe {
         System.out.print("Eingabe Tonnage: ");
         double tonnage = scanner.nextDouble();
 
-        for (int i = 0; i < aktuelleSchiffe.length; i++) {
-            if (aktuelleSchiffe[i] == null) {
-                aktuelleSchiffe[i] = new Schiff(schiffsname, tonnage);
-                return;
-            }
+        boolean schiffanlegungErfolgreich = aktuellerKunde.neuesSchiffAnlegen(schiffsname, tonnage);
+
+        if (!schiffanlegungErfolgreich) {
+            System.out.println("\nSchiff konnte nichte gefunden werden.");
+            return;
         }
+
+        System.out.println("\nSchiff wurde erfolgreich angelegt.");
     }
 
     public void ausgabeKunden() {
@@ -117,7 +123,7 @@ public class SteuerungKundeSchiffe {
         System.out.println("Neuen Kunden anlegen:\t\t\t\t\t\t\t---> 1");
         System.out.println("Neues Schiff anlegen:\t\t\t\t\t\t\t---> 2");
         System.out.println("Alle Kunden mit Kundennr ausgeben:\t\t\t\t---> 3");
-        System.out.println("Alle Kunden mit ihren Schiffen ausgeben:\t\t---> 4");
+        System.out.println("Alle Kunden mit Ihren Schiffen ausgeben:\t\t---> 4");
         System.out.println("Programm beenden:\t\t\t\t\t\t\t\t---> 0");
         System.out.print("Auswahleingabe: ");
 

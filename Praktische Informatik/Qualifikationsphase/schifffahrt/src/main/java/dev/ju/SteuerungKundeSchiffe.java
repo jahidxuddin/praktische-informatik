@@ -67,15 +67,39 @@ public class SteuerungKundeSchiffe {
             System.out.println("\nMaximale Anzahl an Schiffe erreicht.");
         }
 
-        scanner.nextLine();
+        System.out.print("Eingabe Schiffstyp (1: Motorschiff, 2: Segelschiff): ");
+        char schiffstyp = scanner.next().charAt(0);
 
-        System.out.println("Eingabe Schiffsname: ");
+        System.out.print("Eingabe Schiffsname: ");
+        scanner.nextLine();
         String schiffsname = scanner.nextLine();
 
         System.out.print("Eingabe Tonnage: ");
         double tonnage = scanner.nextDouble();
 
-        boolean schiffanlegungErfolgreich = aktuellerKunde.neuesSchiffAnlegen(schiffsname, tonnage);
+        boolean schiffanlegungErfolgreich;
+
+        switch (schiffstyp) {
+            case '1': {
+                System.out.print("Motorleistung (in PS): ");
+                double motorleistung = scanner.nextDouble();
+
+                schiffanlegungErfolgreich = aktuellerKunde.neuesMotorschiffAnlegen(schiffsname, tonnage, motorleistung);
+
+                break;
+            }
+            case '2': {
+                System.out.print("Segelflaeche (in QM): ");
+                double segelflaeche = scanner.nextDouble();
+
+                schiffanlegungErfolgreich = aktuellerKunde.neuesSegelschiffAnlegen(schiffsname, tonnage, segelflaeche);
+
+                break;
+            }
+            default: {
+                schiffanlegungErfolgreich = false;
+            }
+        }
 
         if (!schiffanlegungErfolgreich) {
             System.out.println("\nSchiff konnte nichte gefunden werden.");
@@ -111,7 +135,17 @@ public class SteuerungKundeSchiffe {
                     continue;
                 }
 
-                System.out.println((j + 1) + ". Schiff: " + aktuellesSchiff.getName() + " (Tonnage: " + aktuellesSchiff.getTonnage() + ")");
+                System.out.println((j + 1) + ". Schiff: " + aktuellesSchiff.getName());
+                System.out.println("\tSchiffstyp: " + aktuellesSchiff.getClass().getSimpleName());
+                System.out.println("\tTonnage: " + aktuellesSchiff.getTonnage());
+
+                if (aktuellesSchiff instanceof Motorschiff) {
+                    System.out.println("\tMotorleistung: " + ((Motorschiff) aktuellesSchiff).getMotorleistung());
+                }
+
+                if (aktuellesSchiff instanceof Segelschiff) {
+                    System.out.println("\tSegelflaeche: " + ((Segelschiff) aktuellesSchiff).getSegelflaeche());
+                }
             }
         }
     }

@@ -51,4 +51,26 @@ public class Kunde {
 
         return false;
     }
+
+    public boolean neuesMotorschiffAnlegen(String name, double tonnage, double motorleistung) {
+        for (int i = 0; i < schiffe.length; i++) {
+            if (schiffe[i] == null) {
+                schiffe[i] = new Motorschiff(name, tonnage, motorleistung);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean neuesSegelschiffAnlegen(String name, double tonnage, double segelflaeche) {
+        for (int i = 0; i < schiffe.length; i++) {
+            if (schiffe[i] == null) {
+                schiffe[i] = new Segelschiff(name, tonnage, segelflaeche);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

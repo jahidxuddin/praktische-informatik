@@ -84,7 +84,7 @@ public class SteuerungKundeSchiffe {
                 System.out.print("Motorleistung (in PS): ");
                 double motorleistung = scanner.nextDouble();
 
-                schiffanlegungErfolgreich = aktuellerKunde.neuesMotorschiffAnlegen(schiffsname, tonnage, motorleistung);
+                schiffanlegungErfolgreich = aktuellerKunde.neuesMotorSchiffAnlegen(schiffsname, tonnage, motorleistung);
 
                 break;
             }
@@ -92,7 +92,7 @@ public class SteuerungKundeSchiffe {
                 System.out.print("Segelflaeche (in QM): ");
                 double segelflaeche = scanner.nextDouble();
 
-                schiffanlegungErfolgreich = aktuellerKunde.neuesSegelschiffAnlegen(schiffsname, tonnage, segelflaeche);
+                schiffanlegungErfolgreich = aktuellerKunde.neuesSegelSchiffAnlegen(schiffsname, tonnage, segelflaeche);
 
                 break;
             }
@@ -139,10 +139,12 @@ public class SteuerungKundeSchiffe {
                 System.out.println("\tSchiffstyp: " + aktuellesSchiff.getClass().getSimpleName());
                 System.out.println("\tTonnage: " + aktuellesSchiff.getTonnage());
 
+                // Schiff schiff = new Motorschiff();
                 if (aktuellesSchiff instanceof Motorschiff) {
                     System.out.println("\tMotorleistung: " + ((Motorschiff) aktuellesSchiff).getMotorleistung());
                 }
 
+                // Schiff schiff = new Segelschiff();
                 if (aktuellesSchiff instanceof Segelschiff) {
                     System.out.println("\tSegelflaeche: " + ((Segelschiff) aktuellesSchiff).getSegelflaeche());
                 }

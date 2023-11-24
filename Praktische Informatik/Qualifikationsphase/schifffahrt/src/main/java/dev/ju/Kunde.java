@@ -52,7 +52,7 @@ public class Kunde {
         return false;
     }
 
-    public boolean neuesMotorschiffAnlegen(String name, double tonnage, double motorleistung) {
+    public boolean neuesMotorSchiffAnlegen(String name, double tonnage, double motorleistung) {
         for (int i = 0; i < schiffe.length; i++) {
             if (schiffe[i] == null) {
                 schiffe[i] = new Motorschiff(name, tonnage, motorleistung);
@@ -63,7 +63,7 @@ public class Kunde {
         return false;
     }
 
-    public boolean neuesSegelschiffAnlegen(String name, double tonnage, double segelflaeche) {
+    public boolean neuesSegelSchiffAnlegen(String name, double tonnage, double segelflaeche) {
         for (int i = 0; i < schiffe.length; i++) {
             if (schiffe[i] == null) {
                 schiffe[i] = new Segelschiff(name, tonnage, segelflaeche);

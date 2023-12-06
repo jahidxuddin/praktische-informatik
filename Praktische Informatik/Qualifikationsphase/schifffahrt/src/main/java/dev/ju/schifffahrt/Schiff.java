@@ -1,4 +1,4 @@
-package dev.ju;
+package dev.ju.schifffahrt;
 
 public class Schiff {
     private String name;

@@ -1,0 +1,7 @@
+{
+  "name": "ju_dev/fls-vetretungsplan",
+  "description": "Diese Webseite zeigt den Vertretungsplan der Friedrich-List-Schule in Wiesbaden an.",
+  "require": {
+    "fabpot/goutte": "^4.0"
+  }
+}

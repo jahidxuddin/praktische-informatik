@@ -1,0 +1,12 @@
+{
+  "name": "speedster-test",
+  "version": "1.0.0",
+  "description": "This speedtest shows your download, upload and ping",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Jahid Uddin",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}

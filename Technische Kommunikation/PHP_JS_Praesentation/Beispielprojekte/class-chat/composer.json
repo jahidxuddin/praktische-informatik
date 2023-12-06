@@ -1,0 +1,14 @@
+{
+    "name": "ju_dev/class-chat",
+    "description": "This web app allows you to chat with your classmates during lessons",
+    "require": {
+        "ramsey/uuid": "^4.7"
+    },
+    "authors": [
+        {
+            "name": "Jahid Uddin",
+            "email": "jahidudd65@gmail.com"
+        }
+    ],
+    "license": "MIT"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "class-chat",
+  "version": "1.0.0",
+  "description": "This web app allows you to chat with your classmates during lessons",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jahid Uddin",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}

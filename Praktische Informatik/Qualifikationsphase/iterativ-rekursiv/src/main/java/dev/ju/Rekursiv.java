@@ -10,14 +10,18 @@ public class Rekursiv {
     }
 
     public static int ggt(int zahl1, int zahl2) {
-        if (zahl2 != 0) {
-            return ggt(zahl2, zahl1 % zahl2);
-        }
+        return zahl2 != 0 ? ggt(zahl2, zahl1 % zahl2) : zahl1;
+    }
 
-        return zahl1;
+    public static void ausgabeZahlen(int n) {
+        if (n != 0) {
+            ausgabeZahlen(n - 1);
+            System.out.println(n + ",");
+        }
     }
 
     public static void main(String[] args) {
-        System.out.println(ggt(9, 24));
+        System.out.println(ggt(99876, 24));
+        ausgabeZahlen(10);
     }
 }

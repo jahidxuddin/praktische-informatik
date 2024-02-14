@@ -4,7 +4,7 @@ import java.text.*;
 import java.util.*;
 
 public class Verwaltung {
-    private final int[] zufallsZahl;
+    private int[] zufallsZahl;
     private final int anzahlWiederholungen;
     private double mittelwertMillisekunden;
     private final int auswahl;
@@ -84,7 +84,11 @@ public class Verwaltung {
         long anfang = Calendar.getInstance().getTimeInMillis();
 
         switch (auswahl) {
-            case 1, 4, 2:
+            case 1:
+                this.zufallsZahl = BubbleSort.bubbleSort(zufallsZahl);
+                break;
+            case 2:
+                this.zufallsZahl = SelectionSort.selectionSort(zufallsZahl);
                 break;
             case 3:
                 // Ausgabe der Tauschvorgänge macht wenig Sinn

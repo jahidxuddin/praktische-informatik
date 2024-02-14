@@ -1,20 +1,18 @@
 package de.ju;
 
-import java.util.Arrays;
-
 public class SelectionSort {
-    private int anzahlSchleifendurchlaeufe;
-    private int anzahlTauschvorgaenge;
+    private static int anzahlSchleifendurchlaeufe;
+    private static int anzahlTauschvorgaenge;
 
-    public int getAnzahlSchleifenDurchlaeufe() {
+    public static int getAnzahlSchleifenDurchlaeufe() {
         return anzahlSchleifendurchlaeufe;
     }
 
-    public int getAnzahlTauschvorgaenge() {
+    public static int getAnzahlTauschvorgaenge() {
         return anzahlTauschvorgaenge;
     }
 
-    public int[] selectionSort(int[] array) {
+    public static int[] selectionSort(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             int minIndex = i;
 
@@ -34,19 +32,5 @@ public class SelectionSort {
         }
 
         return array;
-    }
-
-    public static void main(String[] args) {
-        SelectionSort selectionSort = new SelectionSort();
-
-        int[] sortedArray = selectionSort.selectionSort(new int[]{ 5, 10, 2, 13, 100, 99, 50, 23, 48 });
-
-        Arrays.stream(sortedArray).forEach(System.out::println);
-
-        System.out.println();
-        System.out.println();
-
-        System.out.println("Tauschvorgänge: " + selectionSort.getAnzahlTauschvorgaenge());
-        System.out.println("Schleifendurchläufe: " + selectionSort.getAnzahlSchleifenDurchlaeufe());
     }
 }

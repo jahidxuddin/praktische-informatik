@@ -15,20 +15,19 @@ public class SelectionSort {
     }
 
     public int[] selectionSort(int[] array) {
-        int min = array[0];
-        int tempIndex = 0;
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length - 1; i++) {
+            int minIndex = i;
+
             for (int j = i + 1; j < array.length; j++) {
-                if (array[i] > array[j]) {
-                    min = i;
-                    tempIndex = j;
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
                 }
                 anzahlSchleifendurchlaeufe++;
             }
 
-            int temp = array[min];
-            array[min] = array[tempIndex];
-            array[tempIndex] = temp;
+            int temp = array[i];
+            array[i] = array[minIndex];
+            array[minIndex] = temp;
             anzahlTauschvorgaenge++;
 
             anzahlSchleifendurchlaeufe++;

@@ -34,11 +34,11 @@ public class BinaereSuche {
     public int suche(char zeichen, char[] array) {
         int erstePosition = 0;
         int letztePosition = array.length;
-        int mitte = (erstePosition + letztePosition / 2);
+        int mitte = (erstePosition + letztePosition) / 2;
 
         while (erstePosition <= letztePosition) {
             durchlauf++;
-            mitte = (erstePosition + letztePosition / 2);
+            mitte = (erstePosition + letztePosition ) / 2;
             if (array[mitte] == zeichen) {
                 return mitte;
             } else if (array[mitte] > zeichen) {
@@ -58,14 +58,17 @@ public class BinaereSuche {
     public int suche(String suchbegriff, String[] array) {
         int erstePosition = 0;
         int letztePosition = array.length;
+        int mitte = (erstePosition + letztePosition) / 2;
+
+        if (array[mitte].equals(suchbegriff)) {
+            return mitte;
+        }
 
         while (erstePosition <= letztePosition) {
             durchlauf++;
-            int mitte = (erstePosition + letztePosition) / 2;
+            mitte = (erstePosition + letztePosition) / 2;
 
-            if (array[mitte].equals(suchbegriff)) {
-                return mitte;
-            } else if (array[mitte].charAt(0) > suchbegriff.charAt(0)) {
+            if (array[mitte].compareTo(suchbegriff) > 0) {
                 letztePosition = letztePosition - 1;
             } else {
                 erstePosition = erstePosition + 1;

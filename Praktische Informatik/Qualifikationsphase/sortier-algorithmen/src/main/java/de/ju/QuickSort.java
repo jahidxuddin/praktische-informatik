@@ -3,17 +3,6 @@ package de.ju;
 import java.util.Arrays;
 
 public class QuickSort {
-    private static int anzahlSchleifendurchlaeufe;
-    private static int anzahlTauschvorgaenge;
-
-    public static int getAnzahlSchleifenDurchlaeufe() {
-        return anzahlSchleifendurchlaeufe;
-    }
-
-    public static int getAnzahlTauschvorgaenge() {
-        return anzahlTauschvorgaenge;
-    }
-
     public static int[] quickSort(int[] array, int linkePosition, int rechtePosition) {
         int i = linkePosition;
         int j = rechtePosition;

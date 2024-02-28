@@ -10,6 +10,8 @@ public class TastaturEingabeInputStream {
     }
 
     public char leseZeichen() {
+        System.out.print("Bitte geben Sie ein Zeichen an: ");
+
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -20,6 +22,8 @@ public class TastaturEingabeInputStream {
     }
 
     public String leseWort() {
+        System.out.print("Bitte geben Sie mehrere Zeichen an: ");
+
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 

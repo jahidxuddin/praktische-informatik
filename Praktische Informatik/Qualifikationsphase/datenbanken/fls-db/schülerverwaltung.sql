@@ -2,8 +2,10 @@ CREATE DATABASE IF NOT EXISTS schuelerverwaltung;
 
 USE schuelerverwaltung;
 
-DROP TABLE IF EXISTS lehrer;
+DROP TABLE IF EXISTS schueler_kurs;
+DROP TABLE IF EXISTS kurs;
 DROP TABLE IF EXISTS schueler;
+DROP TABLE IF EXISTS lehrer;
 
 CREATE TABLE IF NOT EXISTS lehrer (
     lehrerNr INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -56,12 +58,99 @@ VALUES
     ('Lucas', 'Schmidt', '2001-05-23', 'm', 'Pathfesterhof 1', '65391', 'Espenschied', 'lucas.schmidt@t-online.de', '12-08', 1),
     ('Lisa', 'Schmied', '2000-07-17', 'w', 'Alte Brücke 13', '65207', 'Wiesbaden', 'lisa.schmied@web.de', '12-07', 2);
 
+CREATE TABLE IF NOT EXISTS kurs (
+    kursNr INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    kursbezeichnung varchar(30),
+    fachbezeichnung varchar(30),
+    lehrerNr INT,
+    FOREIGN KEY (lehrerNr) REFERENCES lehrer(lehrerNr)
+);
+
+INSERT INTO kurs(kursbezeichnung, fachbezeichnung)
+VALUES
+    ('Datenbanken', 'Praktische Informatik'),
+    ('Kichliche Dogmen', 'Religion'),
+    ('Handball', 'Sport'),
+    ('Moral', 'Ethik'),
+    ('Organische Chemie', 'Chemie'),
+    ('Demokratiesysteme', 'Politik und Wirtschaft'),
+    ('Analysis', 'Mathematik'),
+    ('Römisches Reich', 'Geschichte'),
+    ('Sturm und Drang', 'Deutsch');
+
+CREATE TABLE schueler_kurs(
+    schuelerKursNr INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    schuelerNr INT,
+    kursNr INT,
+    note SMALLINT,
+    FOREIGN KEY (schuelerNr) REFERENCES schueler(schuelerNr),
+    FOREIGN KEY (kursNr) REFERENCES kurs(kursNr)
+);
+
+INSERT INTO schueler_kurs(schuelerNr, kursNr, note)
+VALUES
+    (1, 1, 6),
+    (2, 1, 15),
+    (1, 2, 8),
+    (2, 2, 11),
+    (1, 3, 11),
+    (7, 3, 7),
+    (1, 4, 10),
+    (2, 4, 12),
+    (3, 4, 5),
+    (1, 5, 13),
+    (2, 5, 12),
+    (1, 6, 14),
+    (9, 6, 8),
+    (1, 7, 10),
+    (12, 7, 6),
+    (6, 8, 12),
+    (10 , 9, 7);
+
 SELECT * FROM schueler ORDER BY nachname;
 SELECT vorname, nachname FROM schueler WHERE stadt LIKE '%a%';
-SELECT nachname FROM schueler WHERE email LIKE '%gmail%';
+SELECT nachname FROM schueler WHERE email LIKE '%@gmail.com';
 SELECT nachname FROM schueler WHERE LENGTH(vorname) = 4;
 SELECT * FROM schueler WHERE LEFT(vorname, 1) BETWEEN 'A' AND 'F';
 SELECT nachname, vorname FROM schueler WHERE geschlecht = 'm';
 SELECT * FROM schueler WHERE MONTH(geburtsdatum) = 5;
 SELECT s.*, l.lehrerNr FROM schueler s JOIN lehrer l ON s.lehrerNr = l.lehrerNr WHERE plz LIKE '65%' AND l.nachname LIKE 'M%';
 SELECT nachname FROM lehrer WHERE anrede = 'Herr' AND nachname NOT LIKE 'S%';
+
+SELECT s.vorname, s.nachname, l.vorname, l.nachname FROM schueler s JOIN lehrer l on s.lehrerNr = l.lehrerNr;
+
+SELECT s.vorname, s.nachname, k.fachbezeichnung, k.kursbezeichnung, sk.note, l.nachname
+FROM schueler_kurs sk
+JOIN schueler s ON sk.schuelerNr = s.schuelerNr
+JOIN kurs k ON sk.kursNr = k.kursNr
+JOIN lehrer l ON s.lehrerNr = l.lehrerNr;
+
+SELECT s.vorname, s.nachname, sk.note, l.nachname
+FROM schueler_kurs sk
+JOIN schueler s on sk.schuelerNr = s.schuelerNr
+JOIN lehrer l on l.lehrerNr = s.lehrerNr
+JOIN kurs k ON sk.kursNr = k.kursNr
+WHERE k.kursbezeichnung = 'Datenbanken';
+
+SELECT s.vorname, s.nachname, sk.note, l.nachname
+FROM schueler_kurs sk
+JOIN schueler s ON s.schuelerNr = sk.schuelerNr
+JOIN lehrer l ON l.lehrerNr = s.lehrerNr
+JOIN kurs k ON sk.kursNr = k.kursNr WHERE sk.note > 5;
+
+SELECT s.vorname, s.nachname
+FROM schueler_kurs sk
+JOIN schueler s ON s.schuelerNr = sk.schuelerNr
+JOIN kurs k ON sk.kursNr = k.kursNr WHERE sk.note BETWEEN 5 AND 9;
+
+SELECT s.vorname, s.nachname
+FROM schueler_kurs sk
+JOIN schueler s ON sk.schuelerNr = s.schuelerNr
+JOIN kurs k ON sk.kursNr = k.kursNr
+WHERE k.fachbezeichnung = 'Chemie' OR k.fachbezeichnung = 'Geschichte' AND sk.note >= 12;
+
+SELECT s.vorname, s.nachname, k.kursbezeichnung, k.fachbezeichnung, l.anrede, l.nachname, sk.note
+FROM schueler_kurs sk
+JOIN schueler s ON sk.schuelerNr = s.schuelerNr
+JOIN kurs k ON sk.kursNr = k.kursNr
+JOIN lehrer l ON s.lehrerNr = l.lehrerNr;

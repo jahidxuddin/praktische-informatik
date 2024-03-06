@@ -26,11 +26,7 @@ String leseWort() {
     }
 }
 
-void ausgabe() {
+void main() {
     System.out.println(leseZeichen());
     System.out.println(leseWort());
-}
-
-void main() {
-   ausgabe();
 }

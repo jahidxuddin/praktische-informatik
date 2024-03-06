@@ -5,7 +5,8 @@ import java.io.InputStreamReader;
 char leseZeichen() {
     System.out.print("Bitte geben Sie ein Zeichen an: ");
 
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+    try {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         return (char) reader.read();
     } catch (IOException e) {
         throw new RuntimeException(e);
@@ -17,7 +18,8 @@ void leseWort() {
     while (!input.equalsIgnoreCase("over")) {
         System.out.print("Bitte geben Sie mehrere Zeichen an: ");
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             input = reader.readLine();
             System.out.println(input);
         } catch (IOException e) {

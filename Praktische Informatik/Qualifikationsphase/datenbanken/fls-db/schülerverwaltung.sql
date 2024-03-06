@@ -18,13 +18,8 @@ INSERT INTO lehrer (anrede, nachname, vorname)
 VALUES
     ('Herr', 'Schlosser', 'Michael'),
     ('Herr', 'Mrazek', 'Ralf'),
-    ('Herr', 'Mrazek', 'Ralf'),
-    ('Herr', 'Mrazek', 'Ralf'),
+    ('Herr', 'Hardt', 'Micheal'),
     ('Herr', 'Schumacher', 'Wolfram'),
-    ('Herr', 'Schlosser', 'Michael'),
-    ('Herr', 'Mrazek', 'Ralf'),
-    ('Herr', 'Mrazek', 'Ralf'),
-    ('Herr', 'Mrazek', 'Ralf'),
     ('Herr', 'Mrazek', 'Ralf'),
     ('Herr', 'Schumacher', 'Wolfram');
 
@@ -50,33 +45,51 @@ VALUES
     ('Jan', 'Mayer', '2000-10-30', 'm', 'Tulpenweg 41', '65201', 'Wiesbaden', 'jan.mayer@gmx.net', '12-09', 3),
     ('Emma', 'Meyer', '2001-05-06', 'w', 'Engenhahnertrasse 24', '65527', 'Niedernhausen', 'emma.meyer@web.de', '12-09', 4),
     ('Tim', 'Mayr', '2001-12-31', 'm', 'Unterster Zwerchweg 37', '60599', 'Frankfurt', 'tim.mayr@gmail.com', '12-08', 5),
-    ('Ben', 'Meyr', '2001-04-13', 'm', 'Dr. Karl Hermann May Str. 8', '65321', 'Heidenrod-Kemel', 'ben.meyr@gmail.com', '12-09', 6),
-    ('Mia', 'Schmidt', '2001-05-16', 'w', 'Am alten Weinberg 23', '65207', 'Wiesbaden', 'mia.schmidt@gmx.net', '12-09', 7),
-    ('Leo', 'Schmidtke', '2000-11-11', 'm', 'Am Weinstock 3', '65205', 'Wiesbaden', 'leo.schmidtke@gmail.com', '12-09', 8),
-    ('Anna', 'Schmidt', '2001-03-14', 'w', 'Baumstraße 17', '65187', 'Wiesbaden', 'anna.schmidt@web.de', '12-09', 9),
-    ('Paul', 'Schmitt', '2001-04-26', 'm', 'Freiherr vom Stein Str 14', '56348', 'Weisel', 'paul.schmitt@web.de', '12-09', 10),
+    ('Ben', 'Meyr', '2001-04-13', 'm', 'Dr. Karl Hermann May Str. 8', '65321', 'Heidenrod-Kemel', 'ben.meyr@gmail.com', '12-09', 3),
+    ('Mia', 'Schmidt', '2001-05-16', 'w', 'Am alten Weinberg 23', '65207', 'Wiesbaden', 'mia.schmidt@gmx.net', '12-09', 1),
+    ('Leo', 'Schmidtke', '2000-11-11', 'm', 'Am Weinstock 3', '65205', 'Wiesbaden', 'leo.schmidtke@gmail.com', '12-09', 2),
+    ('Anna', 'Schmidt', '2001-03-14', 'w', 'Baumstraße 17', '65187', 'Wiesbaden', 'anna.schmidt@web.de', '12-09', 3),
+    ('Paul', 'Schmitt', '2001-04-26', 'm', 'Freiherr vom Stein Str 14', '56348', 'Weisel', 'paul.schmitt@web.de', '12-09', 5),
     ('Lucas', 'Schmidt', '2001-05-23', 'm', 'Pathfesterhof 1', '65391', 'Espenschied', 'lucas.schmidt@t-online.de', '12-08', 1),
     ('Lisa', 'Schmied', '2000-07-17', 'w', 'Alte Brücke 13', '65207', 'Wiesbaden', 'lisa.schmied@web.de', '12-07', 2);
+
+CREATE TABLE IF NOT EXISTS fachbezeichnung (
+    fachbezeichnungNr INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    fachbezeichnung varchar(30)
+);
+
+INSERT INTO fachbezeichnung(fachbezeichnung)
+VALUES
+    ('Praktische Informatik'),
+    ('Religion'),
+    ('Sport'),
+    ('Ethik'),
+    ('Chemie'),
+    ('Politik und Wirtschaft'),
+    ('Mathematik'),
+    ('Geschichte'),
+    ('Deutsch');
 
 CREATE TABLE IF NOT EXISTS kurs (
     kursNr INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     kursbezeichnung varchar(30),
-    fachbezeichnung varchar(30),
+    fachbezeichnungNr INT,
     lehrerNr INT,
-    FOREIGN KEY (lehrerNr) REFERENCES lehrer(lehrerNr)
+    FOREIGN KEY (lehrerNr) REFERENCES lehrer(lehrerNr),
+    FOREIGN KEY (fachbezeichnungNr) REFERENCES fachbezeichnung(fachbezeichnungNr)
 );
 
-INSERT INTO kurs(kursbezeichnung, fachbezeichnung)
+INSERT INTO kurs(kursbezeichnung, fachbezeichnungNr)
 VALUES
-    ('Datenbanken', 'Praktische Informatik'),
-    ('Kichliche Dogmen', 'Religion'),
-    ('Handball', 'Sport'),
-    ('Moral', 'Ethik'),
-    ('Organische Chemie', 'Chemie'),
-    ('Demokratiesysteme', 'Politik und Wirtschaft'),
-    ('Analysis', 'Mathematik'),
-    ('Römisches Reich', 'Geschichte'),
-    ('Sturm und Drang', 'Deutsch');
+    ('Datenbanken', 1),
+    ('Kichliche Dogmen', 2),
+    ('Handball', 3),
+    ('Moral', 4),
+    ('Organische Chemie', 5),
+    ('Demokratiesysteme', 6),
+    ('Analysis', 7),
+    ('Römisches Reich', 8),
+    ('Sturm und Drang', 9);
 
 CREATE TABLE schueler_kurs(
     schuelerKursNr INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -119,10 +132,11 @@ SELECT nachname FROM lehrer WHERE anrede = 'Herr' AND nachname NOT LIKE 'S%';
 
 SELECT s.vorname, s.nachname, l.vorname, l.nachname FROM schueler s JOIN lehrer l on s.lehrerNr = l.lehrerNr;
 
-SELECT s.vorname, s.nachname, k.fachbezeichnung, k.kursbezeichnung, sk.note, l.nachname
+SELECT s.vorname, s.nachname, f.fachbezeichnung, k.kursbezeichnung, sk.note, l.nachname
 FROM schueler_kurs sk
 JOIN schueler s ON sk.schuelerNr = s.schuelerNr
 JOIN kurs k ON sk.kursNr = k.kursNr
+JOIN fachbezeichnung f on k.fachbezeichnungNr = f.fachbezeichnungNr
 JOIN lehrer l ON s.lehrerNr = l.lehrerNr;
 
 SELECT s.vorname, s.nachname, sk.note, l.nachname
@@ -147,10 +161,12 @@ SELECT s.vorname, s.nachname
 FROM schueler_kurs sk
 JOIN schueler s ON sk.schuelerNr = s.schuelerNr
 JOIN kurs k ON sk.kursNr = k.kursNr
-WHERE k.fachbezeichnung = 'Chemie' OR k.fachbezeichnung = 'Geschichte' AND sk.note >= 12;
+JOIN fachbezeichnung f on k.fachbezeichnungNr = f.fachbezeichnungNr
+WHERE f.fachbezeichnung = 'Chemie' OR f.fachbezeichnung = 'Geschichte' AND sk.note >= 12;
 
-SELECT s.vorname, s.nachname, k.kursbezeichnung, k.fachbezeichnung, l.anrede, l.nachname, sk.note
+SELECT s.vorname, s.nachname, k.kursbezeichnung, f.fachbezeichnung, l.anrede, l.nachname, sk.note
 FROM schueler_kurs sk
 JOIN schueler s ON sk.schuelerNr = s.schuelerNr
 JOIN kurs k ON sk.kursNr = k.kursNr
+JOIN fachbezeichnung f on k.fachbezeichnungNr = f.fachbezeichnungNr
 JOIN lehrer l ON s.lehrerNr = l.lehrerNr;

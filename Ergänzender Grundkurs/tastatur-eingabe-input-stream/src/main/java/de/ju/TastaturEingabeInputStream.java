@@ -14,19 +14,24 @@ char leseZeichen() {
     }
 }
 
-String leseWort() {
-    System.out.print("Bitte geben Sie mehrere Zeichen an: ");
+void leseWort() {
+    String input = "";
+    while (!input.equalsIgnoreCase("over")) {
+        System.out.print("Bitte geben Sie mehrere Zeichen an: ");
 
-    try {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        return reader.readLine();
-    } catch (IOException e) {
-        throw new RuntimeException(e);
+            input = reader.readLine();
+
+            System.out.println(input);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
 void main() {
     System.out.println(leseZeichen());
-    System.out.println(leseWort());
+    leseWort();
 }

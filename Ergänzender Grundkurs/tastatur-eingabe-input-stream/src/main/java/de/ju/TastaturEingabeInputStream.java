@@ -2,12 +2,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-char leseZeichen() {
+void leseZeichen() {
     System.out.print("Bitte geben Sie ein Zeichen an: ");
 
     try {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        return (char) reader.read();
+        System.out.println((char) reader.read());
     } catch (IOException e) {
         throw new RuntimeException(e);
     }
@@ -29,6 +29,6 @@ void leseWort() {
 }
 
 void main() {
-    System.out.println(leseZeichen());
+    leseZeichen();
     leseWort();
 }

@@ -130,19 +130,21 @@ SELECT * FROM schueler WHERE MONTH(geburtsdatum) = 5;
 SELECT s.*, l.lehrerNr FROM schueler s JOIN lehrer l ON s.lehrerNr = l.lehrerNr WHERE plz LIKE '65%' AND l.nachname LIKE 'M%';
 SELECT nachname FROM lehrer WHERE anrede = 'Herr' AND nachname NOT LIKE 'S%';
 
-SELECT s.vorname, s.nachname, l.vorname, l.nachname FROM schueler s JOIN lehrer l on s.lehrerNr = l.lehrerNr;
+SELECT s.vorname, s.nachname, l.vorname, l.nachname
+FROM schueler s
+JOIN lehrer l ON s.lehrerNr = l.lehrerNr;
 
 SELECT s.vorname, s.nachname, f.fachbezeichnung, k.kursbezeichnung, sk.note, l.nachname
 FROM schueler_kurs sk
 JOIN schueler s ON sk.schuelerNr = s.schuelerNr
 JOIN kurs k ON sk.kursNr = k.kursNr
-JOIN fachbezeichnung f on k.fachbezeichnungNr = f.fachbezeichnungNr
+JOIN fachbezeichnung f ON k.fachbezeichnungNr = f.fachbezeichnungNr
 JOIN lehrer l ON s.lehrerNr = l.lehrerNr;
 
 SELECT s.vorname, s.nachname, sk.note, l.nachname
 FROM schueler_kurs sk
-JOIN schueler s on sk.schuelerNr = s.schuelerNr
-JOIN lehrer l on l.lehrerNr = s.lehrerNr
+JOIN schueler s ON sk.schuelerNr = s.schuelerNr
+JOIN lehrer l ON l.lehrerNr = s.lehrerNr
 JOIN kurs k ON sk.kursNr = k.kursNr
 WHERE k.kursbezeichnung = 'Datenbanken';
 
@@ -150,12 +152,14 @@ SELECT s.vorname, s.nachname, sk.note, l.nachname
 FROM schueler_kurs sk
 JOIN schueler s ON s.schuelerNr = sk.schuelerNr
 JOIN lehrer l ON l.lehrerNr = s.lehrerNr
-JOIN kurs k ON sk.kursNr = k.kursNr WHERE sk.note > 5;
+JOIN kurs k ON sk.kursNr = k.kursNr
+WHERE sk.note > 5;
 
 SELECT s.vorname, s.nachname
 FROM schueler_kurs sk
 JOIN schueler s ON s.schuelerNr = sk.schuelerNr
-JOIN kurs k ON sk.kursNr = k.kursNr WHERE sk.note BETWEEN 5 AND 9;
+JOIN kurs k ON sk.kursNr = k.kursNr
+WHERE sk.note BETWEEN 5 AND 9;
 
 SELECT s.vorname, s.nachname
 FROM schueler_kurs sk
@@ -168,5 +172,5 @@ SELECT s.vorname, s.nachname, k.kursbezeichnung, f.fachbezeichnung, l.anrede, l.
 FROM schueler_kurs sk
 JOIN schueler s ON sk.schuelerNr = s.schuelerNr
 JOIN kurs k ON sk.kursNr = k.kursNr
-JOIN fachbezeichnung f on k.fachbezeichnungNr = f.fachbezeichnungNr
+JOIN fachbezeichnung f ON k.fachbezeichnungNr = f.fachbezeichnungNr
 JOIN lehrer l ON s.lehrerNr = l.lehrerNr;

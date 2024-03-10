@@ -1,7 +1,4 @@
 <?php
-/*
- * DEPRECATED SOON
-*/
 require_once('vendor/autoload.php');
 
 use Goutte\Client;
@@ -13,22 +10,7 @@ $crawler = $client->request('GET', 'https://www.fls-wiesbaden.de/vplan');
 
 $vplans = $crawler->filter(".vplan")->filter("table");
 
-function createTheadData($thead_data, $theads, $summary)
-{
-    foreach ($theads as $thead) {
-        $theadCrawler = new Crawler($thead);
-        $ths = $theadCrawler->filter("tr")->filter("th");
-
-        foreach ($ths as $th) {
-            $th = new Crawler($th);
-            array_push($thead_data, $th->text());
-        }
-    }
-
-    return $thead_data;
-}
-
-function createTbodyData($tbodys, $summary)
+function createTbodyData($tbodys)
 {
     $tbody_data = [];
     $id = 0;
@@ -46,16 +28,13 @@ function createTbodyData($tbodys, $summary)
                 continue;
             } else if ($tr->attr("class") === "vplan_class_title") {
                 if (!empty($class)) {
-                    $tbody_data[++$id] = $class;
+                    $tbody_data[] = $class;
                 }
                 $class = [];
 
                 $td = $tr->filter("td");
                 $class_name = $td->filter(".class_name")->text();
                 $school_name = $td->filter(".school_name")->text();
-                $class_title = array($class_name, $school_name);
-
-                $class[] = $class_title;
             } else {
                 $tds = $tr->filter("td");
 
@@ -69,36 +48,52 @@ function createTbodyData($tbodys, $summary)
                 $merkmal = $tds->filter(".merkmal")->text();
                 $info = $tds->filter(".info")->text();
 
-                $row = array($position, $teacher, $subject, $room, $vteacher, $vsubject, $vroom, $merkmal, $info);
+                $row = array(
+                    "class_name" => $class_name,
+                    "school_name" => $school_name,
+                    "position" => $position,
+                    "teacher" => $teacher,
+                    "subject" => $subject,
+                    "room" => $room,
+                    "vteacher" => $vteacher,
+                    "vsubject" => $vsubject,
+                    "vroom" => $vroom,
+                    "merkmal" => $merkmal,
+                    "info" => $info
+                );
 
-                $class[] = $row;
+                $class = $row;
             }
+        }
+
+        if (!empty($class)) {
+            $tbody_data[] = $class;
         }
     }
 
     return $tbody_data;
 }
 
-
 if ($vplans->count() > 0) {
-    $data = array();
+    $data = [];
 
     foreach ($vplans as $vplan) {
         $tableCrawler = new Crawler($vplan);
         $summary = $tableCrawler->attr('summary');
-        $thead_data = array();
-        $theads = $tableCrawler->filter("thead");
+
+        // Parse the date from the summary
+        preg_match('/\d{2}\.\d{2}\.\d{4}/', $summary, $matches);
+        $date = isset($matches[0]) ? $matches[0] : null;
+
         $tbodys = $tableCrawler->filter("tbody");
 
-        $thead_data = createTheadData($thead_data, $theads, $summary);
-        $tbody_data = createTbodyData($tbodys, $summary);
+        $tbody_data = createTbodyData($tbodys);
 
-        $vplan_data = array($thead_data, $tbody_data);
-
-        $data[$summary] = $vplan_data;
+        // Add the parsed date to the data array
+        $data[$date] = $tbody_data;
     }
 
     header('Content-Type: application/json');
-    echo json_encode($data);
+    echo json_encode($data, JSON_PRETTY_PRINT);
     exit;
 }

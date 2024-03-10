@@ -8,6 +8,7 @@ $client = new Client();
 
 $crawler = $client->request('GET', 'https://www.fls-wiesbaden.de/vplan');
 
+$edited = $crawler->filter("p.stand")->text();
 $vplans = $crawler->filter(".vplan")->filter("table");
 
 function createTbodyData($tbodys)
@@ -33,7 +34,7 @@ function createTbodyData($tbodys)
                 $class = [];
 
                 $td = $tr->filter("td");
-                $class_name = $td->filter(".class_name")->text();
+                $class_name = substr($td->filter(".class_name")->text(), strlen("Klasse: "));
                 $school_name = $td->filter(".school_name")->text();
             } else {
                 $tds = $tr->filter("td");
@@ -62,7 +63,7 @@ function createTbodyData($tbodys)
                     "info" => $info
                 );
 
-                $class = $row;
+                $class[] = $row;
             }
         }
 
@@ -79,18 +80,25 @@ if ($vplans->count() > 0) {
 
     foreach ($vplans as $vplan) {
         $tableCrawler = new Crawler($vplan);
+
+        $pattern = "/Stand:\s+(\d{2}.\d{2}.\d{4}),\s+(\d{2}:\d{2})\s+Uhr/";
+        if (preg_match($pattern, $edited, $matches)) {
+            $data["edited"] = $matches[1] . " " . $matches[2];
+        } else {
+            $data["edited"] = "Unknown";
+        }
+
         $summary = $tableCrawler->attr('summary');
 
-        // Parse the date from the summary
         preg_match('/\d{2}\.\d{2}\.\d{4}/', $summary, $matches);
         $date = isset($matches[0]) ? $matches[0] : null;
-
+        
         $tbodys = $tableCrawler->filter("tbody");
 
         $tbody_data = createTbodyData($tbodys);
 
-        // Add the parsed date to the data array
         $data[$date] = $tbody_data;
+
     }
 
     header('Content-Type: application/json');

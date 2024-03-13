@@ -82,3 +82,31 @@ VALUES
     (8, 1, '2017-02-10', 0.00, 21, 3),
     (9, 2, '2017-02-20', 0.15, 30, 1),
     (10, 1, '2017-02-28', 0.00, 20, 2);
+
+SELECT produktNr, produktbezeichnung, aktuellerpreis FROM produkt;
+
+SELECT * FROM produkt WHERE produktbezeichnung LIKE 'K%';
+
+SELECT * FROM kunde WHERE plz LIKE '45%';
+
+SELECT
+    produktNr,
+    produktbezeichnung,
+    lagerbestand,
+    aktuellerpreis,
+    stand,
+    produktbezeichnung
+FROM produkt
+JOIN produktgruppe pg ON produkt.produktgruppenNr = pg.produktgruppenNr
+ORDER BY gruppenbezeichnung, aktuellerpreis DESC;
+
+SELECT a.*, p.produktNr, p.produktbezeichnung, p.aktuellerpreis
+FROM produkt p
+JOIN auftrag a ON p.produktNr = a.produktNr
+JOIN kunde k ON a.kundenNr = k.kundenNr ORDER BY auftragsNr;
+
+SELECT k.nachname, k.vorname, p.produktbezeichnung
+FROM kunde k
+JOIN auftrag a ON k.kundenNr = a.kundenNr
+JOIN produkt p ON a.produktNr = p.produktNr
+WHERE plz LIkE '9%';

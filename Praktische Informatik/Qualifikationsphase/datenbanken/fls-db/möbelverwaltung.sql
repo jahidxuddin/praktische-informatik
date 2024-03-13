@@ -85,19 +85,15 @@ VALUES
 
 SELECT produktNr, produktbezeichnung, aktuellerpreis FROM produkt;
 
-SELECT * FROM produkt WHERE produktbezeichnung LIKE 'K%';
+SELECT produktNr, produktbezeichnung, aktuellerpreis
+FROM produkt
+WHERE produktbezeichnung LIKE 'K%';
 
 SELECT * FROM kunde WHERE plz LIKE '45%';
 
-SELECT
-    produktNr,
-    produktbezeichnung,
-    lagerbestand,
-    aktuellerpreis,
-    stand,
-    produktbezeichnung
-FROM produkt
-JOIN produktgruppe pg ON produkt.produktgruppenNr = pg.produktgruppenNr
+SELECT p.*, pg.gruppenbezeichnung
+FROM produkt p
+JOIN produktgruppe pg ON p.produktgruppenNr = pg.produktgruppenNr
 ORDER BY gruppenbezeichnung, aktuellerpreis DESC;
 
 SELECT a.*, p.produktNr, p.produktbezeichnung, p.aktuellerpreis
@@ -109,4 +105,18 @@ SELECT k.nachname, k.vorname, p.produktbezeichnung
 FROM kunde k
 JOIN auftrag a ON k.kundenNr = a.kundenNr
 JOIN produkt p ON a.produktNr = p.produktNr
-WHERE plz LIkE '9%';
+WHERE plz LIkE '9%' AND p.produktbezeichnung LIKE 'Küchen%';
+
+SELECT
+    k.*,
+    p.*,
+    a.menge,
+    a.bestelldatum,
+    a.rabattsatz,
+    @netto := ROUND(p.aktuellerpreis * a.menge * (1 - a.rabattsatz)) AS nettoumsatz,
+    @mwst := ROUND(@netto * 0.19) AS mwst,
+    ROUND(@netto + @mwst) AS bruttoumsatz
+FROM kunde k
+JOIN auftrag a on k.kundenNr = a.kundenNr
+JOIN produkt p on a.produktNr = p.produktNr
+ORDER BY k.kundenNr;

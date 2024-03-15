@@ -113,8 +113,8 @@ SELECT
     a.menge,
     a.bestelldatum,
     a.rabattsatz,
-    @netto := ROUND(p.aktuellerpreis * a.menge * (1 - a.rabattsatz)) AS nettoumsatz,
-    @mwst := ROUND(@netto * 0.19) AS mwst,
+    @netto := ROUND(p.aktuellerpreis * a.menge * (1 - a.rabattsatz), 2) AS nettoumsatz,
+    @mwst := ROUND(@netto * 0.19, 2) AS mwst,
     ROUND(@netto + @mwst) AS bruttoumsatz
 FROM kunde k
 JOIN auftrag a on k.kundenNr = a.kundenNr

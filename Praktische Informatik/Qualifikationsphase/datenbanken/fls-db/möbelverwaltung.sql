@@ -112,8 +112,8 @@ SELECT
     p.*,
     a.menge,
     a.bestelldatum,
-    a.rabattsatz,
-    @netto := ROUND(p.aktuellerpreis * a.menge * (1 - a.rabattsatz), 2) AS nettoumsatz,
+    @rabattsatz := if (a.rabattsatz = 0, 0.05, a.rabattsatz) AS rabattsatz,
+    @netto := ROUND(p.aktuellerpreis * a.menge * (1 - @rabattsatz), 2) AS nettoumsatz,
     @mwst := ROUND(@netto * 0.19, 2) AS mwst,
     ROUND(@netto + @mwst, 2) AS bruttoumsatz
 FROM kunde k

@@ -120,3 +120,7 @@ FROM kunde k
 JOIN auftrag a on k.kundenNr = a.kundenNr
 JOIN produkt p on a.produktNr = p.produktNr
 ORDER BY k.kundenNr;
+
+SELECT SUM(p.aktuellerpreis * a.menge) AS gesamtumsatz
+FROM kunde k, produkt p, auftrag a
+WHERE k.kundenNr = a.kundenNr AND a.produktNr = p.produktNr;

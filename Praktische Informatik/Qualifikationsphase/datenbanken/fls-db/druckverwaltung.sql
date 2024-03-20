@@ -165,15 +165,11 @@ SELECT
     @fehlbestand := ROUND(@erhoehterMeldebestand - istBestand) AS fehlbestand
 FROM artikel;
 
-SELECT *
-FROM (
-    SELECT
-        artikelNr,
-        istBestand,
-        @erhoehterMeldebestand := ROUND(meldeBestand * 1.25) AS erhoehterMeldebestand,
-        ROUND(@erhoehterMeldebestand - istBestand) AS fehlbestand
-    FROM artikel
-) AS subquery
-WHERE fehlbestand > 0;
+SELECT
+    artikelNr,
+    istBestand,
+    @erhoehterMeldebestand := ROUND(meldeBestand * 1.25) AS erhoehterMeldebestand,
+    ROUND(@erhoehterMeldebestand - istBestand) AS fehlbestand
+FROM artikel WHERE ROUND(ROUND(meldeBestand * 1.25) - istBestand) > 0;
 
 SELECT AVG(rabattSatz) FROM lieferant;

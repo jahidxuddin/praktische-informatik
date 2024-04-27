@@ -43,7 +43,7 @@ Manchmal sollte man Leichtigkeit nicht über Lesbarkeit stellen.
 <br />
 <img src="./img/consistent_variable_naming.png" />
 
-## DON'T TO THIS:
+## DON'T DO THIS:
 ```java
 public class beispiel-Klasse {
     // ...

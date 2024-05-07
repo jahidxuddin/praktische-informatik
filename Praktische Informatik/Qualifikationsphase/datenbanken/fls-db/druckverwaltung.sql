@@ -173,3 +173,64 @@ SELECT
 FROM artikel WHERE ROUND(ROUND(meldeBestand * 1.25) - istBestand) > 0;
 
 SELECT AVG(rabattSatz) FROM lieferant;
+
+SELECT lieferantenName, rabattSatz, (SELECT AVG(rabattSatz) FROM lieferant)
+FROM lieferant
+WHERE rabattSatz < (SELECT AVG(rabattSatz) FROM lieferant);
+
+SELECT a.artikelBezeichnung, l.lieferantenName, angebotsPreis, a.gruppenNr
+FROM artikel a
+JOIN bestellung b ON b.artikelNr = a.artikelNr
+JOIN lieferant l ON l.lieferantenNr = b.lieferantenNr
+WHERE a.artikelBezeichnung LIKE '%A4 weiß'
+AND b.angebotspreis < (
+SELECT MIN(angebotsPreis) FROM bestellung
+JOIN artikel ON artikel.artikelNr = bestellung.artikelNr
+WHERE artikel.gruppenNr = 30
+);
+
+SELECT
+    a.artikelNr,
+    l.lieferantenNr,
+    @vorschlagsmenge := 2 * a.meldeBestand - a.istBestand AS vorschlagsMenge,
+    (@vorschlagsmenge * b.angebotsPreis / 1000) * (1 - l.rabattSatz) AS einkaufsPreis
+FROM artikel a
+JOIN bestellung b ON a.artikelNr = b.artikelNr
+JOIN lieferant l ON l.lieferantenNr = b.lieferantenNr
+WHERE a.istBestand < a.meldeBestand;
+
+SELECT
+    a.artikelNr,
+    MIN(
+        (@vorschlagsmenge * b.angebotsPreis / 1000) * (l.rabattSatz / 100)
+    ) AS niedrigsterEinkaufsPreis
+FROM artikel a
+JOIN bestellung b ON a.artikelNr = b.artikelNr
+JOIN lieferant l ON l.lieferantenNr = b.lieferantenNr
+WHERE a.istBestand < a.meldeBestand
+GROUP BY a.artikelNr;
+
+SELECT
+    a.artikelNr,
+    l.lieferantenNr,
+    @vorschlagsmenge := 2 * a.meldeBestand - a.istBestand AS vorschlagsMenge,
+    (@vorschlagsmenge * b.angebotsPreis / 1000) * (l.rabattSatz / 100) AS einkaufsPreis
+FROM artikel a
+JOIN bestellung b ON a.artikelNr = b.artikelNr
+JOIN lieferant l ON l.lieferantenNr = b.lieferantenNr
+WHERE a.istBestand < a.meldeBestand;
+
+DELETE FROM artikel WHERE artikelNr = 1616;
+
+SELECT
+    a.artikelNr,
+    MAX(
+        (2 * a.meldeBestand - a.istBestand) * b.angebotsPreis / 1000 * (l.rabattSatz / 100) * 1.2
+    ) AS maximalerPreis
+FROM artikel a
+JOIN bestellung b ON a.artikelNr = b.artikelNr
+JOIN lieferant l ON l.lieferantenNr = b.lieferantenNr
+WHERE a.istBestand < a.meldeBestand AND a.artikelBezeichnung LIKE '%DIN-A4 weiß'
+GROUP BY a.artikelNr
+HAVING MAX((2 * a.meldeBestand - a.istBestand) * b.angebotsPreis / 1000 * (l.rabattSatz / 100) * 1.2) > 1000
+ORDER BY maximalerPreis DESC;

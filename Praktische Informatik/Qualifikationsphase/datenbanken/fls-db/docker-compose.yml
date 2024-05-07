@@ -4,15 +4,10 @@ services:
   db:
     image: mysql:latest
     ports:
-      - "3305:3306"
+      - "3306:3306"
     restart: always
     environment:
-      MYSQL_DATABASE: root
+      MYSQL_DATABASE: fls_db
       MYSQL_ROOT_PASSWORD: admin123
-      MYSQL_USER: root
+      MYSQL_USER: user
       MYSQL_PASSWORD: admin123
-    volumes:
-      - data_db:/var/lib/mysql
-
-volumes:
-  data_db:

@@ -12,9 +12,8 @@ public void schreibeTextInDatei(File datei, String text, boolean append) {
 public String dateiAuslesen(File datei) {
     StringBuilder dateiInhalt = new StringBuilder();
     try (FileReader fr = new FileReader(datei)) {
-        int data;
-        while ((data = fr.read()) != -1) {
-            dateiInhalt.append((char) data);
+        while (fr.ready()) {
+            dateiInhalt.append((char) fr.read());
         }
     } catch (IOException _) {
         System.out.println("Meldung: Datei konnte nicht ausgelesen werden!");

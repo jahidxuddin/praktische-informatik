@@ -234,3 +234,34 @@ WHERE a.istBestand < a.meldeBestand AND a.artikelBezeichnung LIKE '%DIN-A4 weiß
 GROUP BY a.artikelNr
 HAVING MAX((2 * a.meldeBestand - a.istBestand) * b.angebotsPreis / 1000 * (l.rabattSatz / 100) * 1.2) > 1000
 ORDER BY maximalerPreis DESC;
+
+SELECT l.lieferantenName, l.rabattSatz AS rabattsatz
+FROM lieferant l ORDER BY rabattSatz DESC LIMIT 3;
+
+SELECT l.lieferantenName, l.rabattSatz AS rabattsatz
+FROM lieferant l ORDER BY rabattSatz DESC LIMIT 1,2;
+
+SELECT b.bestellNr, a.artikelBezeichnung, l.lieferantenName, MONTH(b.angebotsDatum) AS monat, YEAR(b.angebotsDatum) AS jahr
+FROM bestellung b
+JOIN artikel a ON a.artikelNr = b.artikelNr
+JOIN lieferant l ON l.lieferantenNr = b.lieferantenNr
+WHERE MONTH(b.angebotsDatum) = 2;
+
+SELECT DISTINCT l.lieferantenName, MONTH(b.angebotsDatum) AS monat, YEAR(b.angebotsDatum) AS jahr
+FROM bestellung b
+JOIN lieferant l ON l.lieferantenNr = b.lieferantenNr
+WHERE MONTH(b.angebotsDatum) BETWEEN 1 AND 3 ORDER BY l.lieferantenName;
+
+INSERT INTO lieferant (lieferantenNr, lieferantenName, strasse, plz, ort)
+VALUES
+    (50000, 'FLS GmbH', 'Brunhildenstr 142', '65189', 'Wiesbaden'),
+    (50001, 'FES OHG', 'Balthasar-Neumann-Straße 1', '65189', 'Wiesbaden');
+
+UPDATE lieferant
+SET telefon = '0611/315-100'
+WHERE lieferantenName = 'FLS GmbH';
+
+SELECT l.lieferantenNr, l.lieferantenName, l.strasse, l.plz, l.ort, l.telefon, l.rabattSatz
+FROM lieferant l  WHERE l.rabattSatz IS NULL;
+
+DELETE FROM lieferant WHERE lieferantenName IN ('FLS GmbH', 'FES OHG');

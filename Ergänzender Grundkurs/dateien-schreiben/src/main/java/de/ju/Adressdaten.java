@@ -4,7 +4,7 @@ import java.io.RandomAccessFile;
 void listeNamen() {
     System.out.println("Vor- und Nachnamen der Datei adressen.txt auflisten:");
 
-    try(RandomAccessFile raf = new RandomAccessFile("adressen.txt", "rw")) {
+    try(RandomAccessFile raf = new RandomAccessFile("adressen.txt", "r")) {
         String rohDaten;
         while ((rohDaten = raf.readLine()) != null) {
             String[] adressen = rohDaten.split(",");

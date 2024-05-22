@@ -296,8 +296,7 @@ WHERE b.artikelNr IS NULL;
 SELECT a.artikelNr, a.artikelBezeichnung, b.bestellNr, b.artikelNr, b.angebotsPreis
 FROM artikel a
          LEFT JOIN bestellung b ON a.artikelNr = b.artikelNr
-WHERE b.artikelNr IS NULL
-   OR a.artikelBezeichnung BETWEEN 'A' AND 'M';
+WHERE b.artikelNr IS NULL;
 
 SELECT a.artikelNr, a.artikelBezeichnung, b.bestellNr, b.artikelNr, b.angebotsPreis
 FROM bestellung b
@@ -313,14 +312,14 @@ WHERE w.gruppenName = 'DV-Papier'
 ORDER BY b.angebotsPreis;
 
 DELETE
-FROM artikel
-WHERE gruppenNr = (SELECT gruppenNr FROM warengruppe WHERE gruppenName = 'DV-Papier');
-
-DELETE
 FROM bestellung
 WHERE artikelNr = (SELECT artikelNr
                    FROM artikel
                    WHERE artikel.gruppenNr = (SELECT gruppenNr FROM warengruppe WHERE gruppenName = 'DV-Papier'));
+
+DELETE
+FROM artikel
+WHERE gruppenNr = (SELECT gruppenNr FROM warengruppe WHERE gruppenName = 'DV-Papier');
 
 DELETE
 FROM warengruppe

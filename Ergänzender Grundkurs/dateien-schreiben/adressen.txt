@@ -1,0 +1,5 @@
+Maske,Max,Querweg 38,65189,Wiesbaden
+Normal,Otto,Schlossallee 10,52235,Großstadt
+Meier,Heini,Baumweg 13, 60363,Frankfurt
+Birelli,Elli,Dechbettener Str. 26,84521,Regensburg
+Tester,Tina,Torfteich 12,35571,Friesenkaff

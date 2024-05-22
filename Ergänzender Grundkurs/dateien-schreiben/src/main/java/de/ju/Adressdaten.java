@@ -7,9 +7,9 @@ void listeNamen() {
     try(RandomAccessFile raf = new RandomAccessFile("adressen.txt", "rw")) {
         String rohDaten;
         while ((rohDaten = raf.readLine()) != null) {
-            String[] daten = rohDaten.split(",");
+            String[] adressen = rohDaten.split(",");
 
-            System.out.println(daten[1] + " " + daten[0] + ",");
+            System.out.println(adressen[1] + " " + adressen[0] + ",");
         }
     } catch(IOException e) {
         System.out.println(e.getMessage());

@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class Adressdaten {
+    public Adressdaten() {
+        listeNamen();
+    }
+
     public void listeNamen() {
         System.out.println("Vor- und Nachnamen der Datei adressen.txt auflisten:");
 
@@ -24,6 +28,6 @@ public class Adressdaten {
     }
 
     public static void main(String[] ignored) {
-        new Adressdaten().listeNamen();
+        new Adressdaten();
     }
 }

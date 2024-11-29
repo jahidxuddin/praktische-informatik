@@ -21,51 +21,26 @@ public class Sender {
         }
     }
 
-    private void oeffnePorts() {
-        this.conn.setDTR(true);
-        this.conn.setRTS(true);
-    }
-
-    private void warteAufDSR() {
-        System.out.println("\nSysteminfo: Warte auf Betriebsbereitschaft des Empfängers (DSR)!");
-        while (!this.conn.isDSR()) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        System.out.println("Systeminfo: Empfänger ist betriebsbereit!");
-    }
-
-    private void warteAufCTS() {
-        System.out.println("\nSysteminfo: Warte auf Betriebsbereitschaft des Empfängers (CTS)!");
-        while (!this.conn.isCTS()) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        System.out.println("Systeminfo: Empfänger ist betriebsbereit!");
-    }
-
-    private void sendeACK() throws IOException {
-        System.out.println("\nSysteminfo: Sende ACK!");
-        this.conn.write(this.ACK);
-        System.out.println("Systeminfo: ACK wurde gesendet!");
-    }
-
     public void senden() {
         try {
             if (!this.conn.open()) {
                 return;
             }
 
-            this.oeffnePorts();
-            this.warteAufDSR();
-            this.warteAufCTS();
-            this.sendeACK();
+            this.conn.setDTR(true);
+            this.conn.setRTS(true);
+
+            System.out.println("\nSysteminfo: Warte auf Betriebsbereitschaft des Empfängers (DSR)!");
+            while (!this.conn.isDSR());
+            System.out.println("Systeminfo: Empfänger ist betriebsbereit!");
+
+            System.out.println("\nSysteminfo: Warte auf Betriebsbereitschaft des Empfängers (CTS)!");
+            while (!this.conn.isCTS());
+            System.out.println("Systeminfo: Empfänger ist betriebsbereit!");
+
+            System.out.println("\nSysteminfo: Sende ACK!");
+            this.conn.write(this.ACK);
+            System.out.println("Systeminfo: ACK wurde gesendet!");
 
             Scanner scanner = new Scanner(System.in);
             System.out.println("\nNachricht für den Empfänger eingeben\nund mit dem Wort over absenden:");

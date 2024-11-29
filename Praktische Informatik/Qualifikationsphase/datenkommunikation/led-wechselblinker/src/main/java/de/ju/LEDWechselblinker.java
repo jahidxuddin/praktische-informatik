@@ -47,7 +47,7 @@ public class LEDWechselblinker {
     }
 
     public static void main(String[] args) {
-        SerialDetails details = new SerialDetails("COM5", 9600, 8, 1, 0);
+        SerialDetails details = new SerialDetails("COM1", 9600, 8, 1, 0);
         SerialWrapper.createSerialConnection(details, new SerialConnection() {
             @Override
             public void onSuccess(Serial serial) {

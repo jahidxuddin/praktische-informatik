@@ -1,7 +1,7 @@
 package de.ju;
 
 public class ThreadTester {
-    public ThreadTester() {
+    public ThreadTester() throws InterruptedException {
         int sleeptime = 100;
         int anzahlDurchlaeufe = 5;
 
@@ -20,12 +20,14 @@ public class ThreadTester {
         t3.start();
         t4.start();
 
-        while (t1.isAlive() && t2.isAlive() && t3.isAlive() && t4.isAlive());
+        while (t1.isAlive() || t2.isAlive() || t3.isAlive() || t4.isAlive()) {
+            Thread.sleep(1000);
+        }
 
         System.out.println("\n\tProgramm beendet!");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new ThreadTester();
     }
 }

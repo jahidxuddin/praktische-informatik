@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Übung HTML CSS JS</title>
+		<link
+			rel="stylesheet"
+			href="		https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css"
+		/>
+		<link rel="stylesheet" href="../mdl/material.min.css" />
+		<script src="../mdl/material.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://www.w3schools.com/w3css/4/w3.css"
+		/>
+		<link rel="stylesheet" href="./style.css" />
+		<script defer src="./script.js"></script>
+	</head>
+	<body>
+		<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+			<header class="mdl-layout__header mdl-layout__header--transparent">
+				<div class="mdl-layout__header-row">
+					<!-- Title -->
+					<span class="mdl-layout-title">Übung HTML CSS JS</span>
+					<!-- Add spacer, to align navigation to the right -->
+					<div class="mdl-layout-spacer"></div>
+					<!-- Navigation -->
+					<nav class="mdl-navigation">
+						<a class="mdl-navigation__link" href="#">HTML</a>
+						<a class="mdl-navigation__link" href="#">CSS</a>
+						<a class="mdl-navigation__link" href="#">JS</a>
+						<a class="mdl-navigation__link" href="#">Frameworks</a>
+					</nav>
+				</div>
+			</header>
+			<div class="mdl-layout__drawer">
+				<span class="mdl-layout-title">Übung HTML CSS JS</span>
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link" href="#">HTML</a>
+					<a class="mdl-navigation__link" href="#">CSS</a>
+					<a class="mdl-navigation__link" href="#">JS</a>
+					<a class="mdl-navigation__link" href="#">Frameworks</a>
+				</nav>
+			</div>
+			<main
+				class="mdl-layout__content"
+				style="
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					padding: 64px;
+					gap: 32px;
+				"
+			>
+				<div
+					style="
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						gap: 36px;
+					"
+				>
+					<div style="width: 50%">
+						<h1>LOREM IPSUM</h1>
+						<p style="color: black">
+							Lorem ipsum, dolor sit amet consectetur adipisicing
+							elit. Laudantium, optio! Itaque quibusdam natus rem
+							recusandae officia animi quia laboriosam
+							necessitatibus praesentium omnis voluptatibus libero
+							inventore vel ex, veritatis consequatur asperiores.
+						</p>
+					</div>
+					<div
+						style="width: 50%"
+						class="w3-content w3-display-container"
+					>
+						<img
+							class="mySlides"
+							src="./img/snowtops.jpg"
+							style="width: 100%"
+						/>
+						<img
+							class="mySlides"
+							src="./img/lights.jpg"
+							style="width: 100%"
+						/>
+						<img
+							class="mySlides"
+							src="./img/mountains.jpg"
+							style="width: 100%"
+						/>
+						<img
+							class="mySlides"
+							src="./img/forest.jpg"
+							style="width: 100%"
+						/>
+
+						<button
+							class="w3-button w3-black w3-display-left"
+							onclick="plusDivs(-1)"
+						>
+							&#10094;
+						</button>
+						<button
+							class="w3-button w3-black w3-display-right"
+							onclick="plusDivs(1)"
+						>
+							&#10095;
+						</button>
+					</div>
+				</div>
+				<div
+					style="
+						background: #04a1bf;
+						font-family: 'Open Sans', sans-serif;
+						width: 75%;
+            height: 50%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						flex-direction: column;
+            padding: 64px;
+					"
+					class="container"
+				>
+					<div >
+						<div class="intro col-12">
+							<h1>TODO LISTE</h1>
+							<div>
+								<div class="border1"></div>
+							</div>
+						</div>
+					</div>
+
+					<div>
+						<div class="helpText col-12" style="text-align: center;">
+							<p id="first">
+								Geben Sie Text in das Eingabefeld ein, um
+								Elemente zu Ihrer Liste hinzuzufügen.
+							</p>
+							<p id="second">
+								Klicken Sie auf ein Element, um es als erledigt
+								zu markieren.
+							</p>
+							<p id="third">
+								Klicken Sie auf das "X", um das Element aus
+								Ihrer Liste zu entfernen.
+							</p>
+						</div>
+					</div>
+
+					<div>
+						<div class="col-12">
+							<input
+								id="userInput"
+								type="text"
+								placeholder="Neues TODO..."
+								maxlength="27"
+							/>
+							<button id="enter">
+								<i class="fa fa-refresh"></i>
+							</button>
+						</div>
+					</div>
+
+					<div>
+						<div class="listItems col-12">
+							<ul
+								class="col-12 offset-0 col-sm-8 offset-sm-2"
+							></ul>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Todo-Liste</title>
+		<link rel="stylesheet" href="./style.css" />
+		<script defer src="https://unpkg.com/@tailwindcss/browser@4"></script>
+		<script defer src="./script.js"></script>
+	</head>
+	<body>
+		<section class="h-screen w-full grid place-items-center">
+			<div class="w-1/2 h-1/2 border rounded-lg p-4 flex flex-col gap-5">
+				<h1 class="text-3xl text-center font-semibold">Meine Todo's</h1>
+				<!-- Todo Eingabefeld -->
+				<form
+					id="todo-form"
+					class="w-full flex gap-2"
+					onsubmit="addTodo(event)"
+				>
+					<input
+						type="text"
+						id="todo-input"
+						placeholder="Neues Todo..."
+						class="border rounded-lg p-2 w-4/5 outline-none"
+						autofocus
+					/>
+					<button
+						type="submit"
+						class="rounded-lg p-2 bg-blue-500 text-white w-1/5 font-semibold cursor-pointer"
+					>
+						Hinzufügen
+					</button>
+				</form>
+				<!-- Hier werden die Todos eingefügt -->
+				<ul id="todo-list" class="w-full flex flex-col gap-3"></ul>
+			</div>
+		</section>
+		<section class="h-screen w-full grid place-items-center">
+			<div class="w-1/2 h-auto border rounded-lg p-4 flex flex-col gap-5">
+				<h1 class="text-3xl text-center font-semibold">
+					Mein Kontaktformular
+				</h1>
+				<form id="contact-form" class="w-full flex flex-col gap-3">
+					<input
+						type="text"
+						id="name"
+						placeholder="Ihr Name"
+						class="border rounded-lg p-2 w-full outline-none"
+						required
+					/>
+					<input
+						type="email"
+						id="email"
+						placeholder="Ihre E-Mail"
+						class="border rounded-lg p-2 w-full outline-none"
+						required
+					/>
+					<textarea
+						id="message"
+						placeholder="Ihre Nachricht..."
+						class="border rounded-lg p-2 w-full outline-none h-32"
+						required
+					></textarea>
+					<button
+						type="submit"
+						class="rounded-lg p-2 bg-blue-500 text-white font-semibold cursor-pointer"
+					>
+						Senden
+					</button>
+				</form>
+			</div>
+		</section>
+		<section class="h-screen w-full grid place-items-center">
+			<div class="w-fit h-auto border rounded-lg p-4 flex flex-col gap-5">
+				<h1 class="text-3xl text-center font-semibold">Tic Tac Toe</h1>
+				<div class="grid grid-cols-3 grid-rows-3 w-fit gap-0">
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-1"
+					></div>
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-2"
+					></div>
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-3"
+					></div>
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-4"
+					></div>
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-5"
+					></div>
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-6"
+					></div>
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-7"
+					></div>
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-8"
+					></div>
+					<div
+						class="w-32 h-32 border flex items-center justify-center text-xl cursor-pointer"
+						id="cell-9"
+					></div>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

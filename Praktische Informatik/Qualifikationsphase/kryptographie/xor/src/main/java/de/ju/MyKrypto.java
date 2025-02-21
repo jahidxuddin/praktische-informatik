@@ -1,31 +1,22 @@
 package de.ju;
 
+import java.util.Base64;
+
 public class MyKrypto {
-    public String verschluesseleXOR(String klarText, String key) {
-        byte[] byteText = klarText.getBytes();
+    public String encryptXOR(String text, String key) {
+        byte[] byteText = Base64.getDecoder().decode(text);
         byte[] byteKey = key.getBytes();
-        byte[] result = xorByteArrays(byteText, byteKey);
-        String text = "";
-        for (byte b : result) {
-            text += (char) b;
-        }
-        return text;
-    }
 
-    private byte[] xorByteArrays(byte[] a, byte[] b) {
-        if (a.length != b.length) {
-            throw new IllegalArgumentException("Byte arrays must have the same length");
-        }
-
-        byte[] result = new byte[a.length];
+        byte[] result = new byte[byteText.length];
         for (int i = 0; i < result.length; i++) {
-            result[i] = (byte) (a[i] ^ b[i]);
+            result[i] = (byte) (byteText[i] ^ byteKey[i % byteKey.length]);
         }
-        return result;
+
+        return Base64.getEncoder().encodeToString(result);
     }
 
     public static void main(String[] args) {
         MyKrypto myKrypto = new MyKrypto();
-        System.out.println(myKrypto.verschluesseleXOR("TEXT", "PENT"));
+        System.out.println(myKrypto.encryptXOR(myKrypto.encryptXOR("TEXT", "PENT"), "PENT"));
     }
 }

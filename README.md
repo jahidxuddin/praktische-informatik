@@ -1,6 +1,6 @@
 # Praktische Informatik
 
-This repository is based on my computer science subjects. It contains exercises to the computer languages HTML, CSS, Javascript and Java. 
+This repository is based on my computer science subjects. It contains exercises to multiple coding languages.
 
 ## About
 

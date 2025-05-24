@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <link rel="stylesheet" href="./css/navStyle.css">
+    <link rel="stylesheet" href="./css/watchedStyle.css">
+    <link rel="stylesheet" href="./css/popupStyle.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="nav-logo-text">WatchHub</a>
+                <img src="bilder/logotype-removebg-preview.png" alt="Logo" class="nav-logo-image">
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="watched.html" class="nav-link">Watched</a>
+                <a href="watchlist.html" class="nav-link">Watchlist</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="popup-overlay" id="moviePopup">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <div class="popup-movie-details">
+                <!-- Content will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <div id="listContainer">
+        <!-- Your content will go here -->
+    </div>
+    <script src="./js/loadWatchlist.js"></script>
+</body>
+</html>

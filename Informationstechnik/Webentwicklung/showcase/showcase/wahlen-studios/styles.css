@@ -1,0 +1,263 @@
+/* MDL-Content anpassen, damit die Container untereinander stehen */
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%; /* Stellt sicher, dass der Body den gesamten Bereich abdeckt */
+    margin: 0;
+    background-color: #1b1f2a; /* Hintergrund für die gesamte Seite */
+}
+
+.mdl-layout {
+    min-height: 100vh; /* Mindestens Bildschirmhöhe, wächst aber mit Inhalt */
+    display: flex;
+    flex-direction: column;
+}
+
+.mdl-layout__content {
+    flex-grow: 1; /* Stellt sicher, dass sich der Inhalt mit dem Scrollen ausdehnt */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: inherit; /* Erbt die Hintergrundfarbe von `body` */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+
+/* Styling für einzelne w3-container */
+.w3-container {
+    width: 50%; /* Container nimmt 50% der Bildschirmbreite ein */
+    min-height: 85vh; /* Verhindert, dass sich Container zu sehr ausdehnt */
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8); /* Leicht transparenter Hintergrund */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schatten für besseren Kontrast */
+    display: flex;
+    margin-bottom: 20px; /* Abstand zwischen den Containern */
+    border-radius: 10px; /* Abgerundete Ecken für schöneres Design */
+    overflow: hidden; /* Verhindert, dass Inhalte überstehen */
+    flex-direction: column;
+
+    }
+
+    .w3-container-content {
+        display: flex;
+        gap: 5px; /* Abstand zwischen Bild und Infos */
+        width: 100%;
+        justify-content: space-between;
+    }
+
+.w3-container-film {
+    width: 95%;
+    max-width: 600px; /* Passt sich den Bildern an */
+    display: flex;
+    justify-content: center; /* Stellt sicher, dass das Bild in der Mitte bleibt */
+}
+
+.w3-container-film-preview {
+    width: 50%; /* Container nimmt 50% der Bildschirmbreite ein */
+    min-height: 120vh; /* Verhindert, dass sich Container zu sehr ausdehnt */
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8); /* Leicht transparenter Hintergrund */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Schatten für besseren Kontrast */
+    display: flex;
+    margin-bottom: 20px; /* Abstand zwischen den Containern */
+    border-radius: 10px; /* Abgerundete Ecken für schöneres Design */
+    overflow: hidden; /* Verhindert, dass Inhalte überstehen */
+    flex-direction: column;
+
+    }
+
+/* Der zweite Container (für das Bild) innerhalb des Haupt-Containers */
+.w3-container-film img {
+    width: 100%; /* Füllt die Breite des Containers */
+    max-width: 600px; /* Maximale Breite für große Bildschirme */
+    height: 350px; /* Einheitliche Höhe für alle Bilder */
+    object-fit: contain; /* Zeigt das gesamte Bild ohne Abschneiden */
+}
+
+
+/* Info-Container für Filmdetails */
+.w3-container-info {
+    padding: 20px;
+    border-bottom: 2px solid #ddd; /* Dünne Linie zur Trennung */
+}
+
+.w3-container-info h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.w3-container-info .neu-badge {
+    background-color: black;
+    color: white;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+.w3-container-info p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.w3-container-info strong {
+    font-weight: bold;
+}
+
+/* Kino-Standort Container */
+.w3-cinema-location {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.w3-cinema-location img {
+    width: 80px; /* Logo */
+    height: auto;
+    margin-right: 10px;
+}
+
+.w3-cinema-location h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Vorstellungstermine */
+.w3-showtimes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom:10px;
+
+}
+
+.w3-showtime-box {
+    width: 120px;
+    height: 80px;
+    background-color: #0078d7; /* Blau */
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.w3-showtime-box:hover {
+    background-color: #005ea6;
+}
+
+.w3-more-showtimes {
+    width: 120px;
+    height: 80px;
+    background-color: #005ea6;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+/* Datumstitel für die Vorstellungszeiten */
+.w3-showtime-date {
+    font-size: 1.3rem; /* Etwas größer als normaler Text */
+    font-weight: bold;
+    color: #333; /* Dunkles Grau für gute Lesbarkeit */
+    margin-bottom: 10px; /* Etwas Abstand zu den Showtimes */
+}
+
+
+.mdl-navigation__link-film {
+    color: #0078d7; /* Blau */
+    text-decoration: none; /* Entfernt den Unterstrich */
+    font-weight: bold; /* Hebt den Link hervor */
+    transition: color 0.3s ease-in-out; /* Sanfter Farbwechsel */
+}
+
+.mdl-navigation__link-film:hover {
+    color: #888888; /* Grau beim Hover */
+}
+
+
+.w3-container-trailer {
+    width: 100%; /* Breite über den ganzen Container */
+    margin-top: 20px; /* Abstand nach oben */
+}
+
+.w3-container-trailer iframe {
+    width: 100%; /* Volle Breite */
+    height: 400px; /* Höhe kann angepasst werden */
+    border-radius: 10px; /* Optional für runde Ecken */
+}
+
+
+
+
+/ Header Styles /
+.mdl-layout__header {
+    background-color: #2196F3 !important; / Blue color /
+}
+
+.mdl-layout-title {
+    color: white !important;
+    font-weight: bold;
+}
+
+/ Section Styles /
+.section {
+    padding: 20px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    color: #2196F3;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/ Food Card Styles /
+.food-card {
+    margin: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mdl-cardtitle {
+    color: white;
+    height: 150px;
+}
+
+.mdl-cardsupporting-text {
+    color: #555;
+    font-size: 1em;
+}
+
+.mdl-button--colored {
+    background-color: #2196F3 !important;
+    color: white !important;
+}
+
+/ Responsive Grid */
+@media (max-width: 600px) {
+    .mdl-cell {
+        width: 100%;
+    }
+}

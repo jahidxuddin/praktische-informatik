@@ -1,0 +1,188 @@
+/* Base styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F4BB23;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container for the main content */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #A98331;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(8, 8, 8, 0.452);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Link styles */
+a {
+    text-decoration: none;
+}
+
+/* Headings styles */
+h1, h2 {
+    color: #fff;
+}
+
+/* Movie section container */
+.movie-section {
+    margin: 4px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Button styles */
+.button {
+    padding: 0.5rem 1rem;
+    background-color: #ff4500;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    width: 200px;
+    text-align: center;
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    background-color: #ff5722;
+}
+
+/* Search element styles */
+.search-element {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+/* Heading within the search element */
+.search-element h3 {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Form control styles */
+.search-element .form-control {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 14px;
+    outline: none;
+    color: #333;
+    width: 350px;
+    box-sizing: border-box;
+    box-shadow: 0 0 12px rgba(8, 8, 8, 0.452);
+}
+
+/* Hidden search list */
+.hide-search-list {
+    display: none;
+}
+
+/* Search results list styles */
+.search-list {
+    position: relative;
+    max-height: 500px;
+    margin-top: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 10;
+    background-color: #2c0c00af;
+    width: 350px;
+    box-sizing: border-box;
+    border-radius: 14px;
+    box-shadow: 0 0 12px rgba(8, 8, 8, 0.452);
+}
+
+/* Individual search list item styles */
+.search-list .search-list-item {
+    background-color: #2c0c0025;
+    padding: 0.5rem;
+    border-bottom: 1px solid white;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: white;
+    box-sizing: border-box;
+}
+
+/* Hover effect for list items */
+.search-list .search-list-item:hover {
+    background-color: #ff4500;
+}
+
+/* Flex layout for search items */
+.search-list-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Image styles in search items */
+.search-item-cover img {
+    width: 40px;
+    margin-right: 1rem;
+}
+
+/* Title styles for search items */
+.search-item-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-item-title h3 {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Description styles for search items */
+.search-item-title p {
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+/* Custom scrollbar styling */
+.search-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 14px;
+}
+
+.search-list::-webkit-scrollbar-thumb {
+    background-color: #A98331;
+    outline: none;
+    border-radius: 10px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .search-element .form-control,
+    .search-list {
+        width: 100%;
+        max-width: 350px;
+    }
+}

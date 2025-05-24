@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wii Shop Channel | Onliine</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/shop.css" />
+    <script src="js/shop.js"></script>
+    <script src="/db/shopitems.js"></script>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/howler.min.js"></script>
+    <script src="/js/from-html.js"></script>
+    <script src="/js/homemenu.js"></script>
+    <script src="/js/audio.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/buttons.js"></script>
+    <script src="/js/channels.js"></script>
+    <style>body {animation: fadeIn 500ms linear forwards}</style>
+
+    <meta property="og:site_name" content="Onliine" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Onliine Web" />
+	<meta property="og:description" content="Wii System simulator based on the latest version released by Nintendo" />
+	<meta id="meta-image" property="og:image" itemprop="image" content="" />
+	<link rel="apple-touch-icon" href="" />
+	<meta name="author" content="JerosGamer89" />
+    <meta name="description" content="Wii System simulator based on the latest version released by Nintendo">
+	<meta name="keywords" content="riimake,onliine,wii,homebrew,wii simulator,wii menu,wii web" />
+    <meta name="theme-color" content="#222222" />
+    <meta name="apple-mobile-web-app-status-bar" content="#222222" />
+</head>
+<body>
+    <!-- bg -->
+    <div id="bg">
+        <div class="bggradients">
+            <img src="../assets/shop-gradient.png" class="l">
+            <img src="../assets/shop-gradient.png" class="r">
+        </div>
+
+        <div class="dots">
+            <div class="t"></div>
+            <div class="b"></div>
+        </div>
+    </div>
+
+    <!-- aspect ratio container -->
+    <div id="aspectcontainer">
+        <!-- header -->
+        <div class="header">Wii Shop Channel</div>
+
+        <!-- content -->
+        <div id="content">
+            <div id="contentframe" from-html="pages/index.html"></div>
+        </div>
+
+        <!-- bottom of page -->
+        <div class="bottom">
+            <a onclick="window.location.href = '/?skipwarn=true'" class="back buttonlikeshop">Wii Menu</a>
+            <div>
+                <span class="pt">&infin;</span>
+                <span class="label">Wii Points</span>
+            </div>
+            <a href="https://developer.chrome.com/docs/devtools/console/javascript/"
+            class="guide buttonlikeshop" target="_blank">Shopping Guide</a>
+        </div>
+    </div>
+
+    <script>includeHTML();</script>
+</body>
+</html>

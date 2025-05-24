@@ -1,0 +1,95 @@
+const speed = 20;                   // Bildgeschwindigkeit in Millisekunden
+const scale = 0.20;                 // Bildskalierung
+let canvas, ctx, logoColor;
+
+// DVD-Objekt mit Position, Geschwindigkeit und Bild
+const dvd = {
+    x: 200,                         // Horizontale Position
+    y: 300,                         // Vertikale Position
+    xspeed: 10,                     // Geschwindigkeit auf der X-Achse
+    yspeed: 10,                     // Geschwindigkeit auf der Y-Achse
+    img: new Image()                // Neues Bildobjekt
+};
+
+// Hauptfunktion
+(function main() {
+    // Canvas und Kontext initialisieren
+    canvas = document.getElementById("wii-chanel");
+    ctx = canvas.getContext("2d");
+    
+    // Bildquelle festlegen
+    dvd.img.src = './dvd-logo_X5.png'; // oder './dvd-logo_3.png'
+
+    // Canvas-Größe anpassen
+    resizeCanvas();
+
+    // Zufällige Farbe auswählen und Animation starten, wenn das Bild geladen ist
+    dvd.img.onload = function() {
+        pickColor();
+        update();
+    };
+
+    // Event Listener für Fensteränderung
+    window.addEventListener('resize', resizeCanvas);
+})();
+
+// Funktion zum Anpassen der Canvas-Größe
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+// Update-Funktion für die Animation
+function update() {
+    // Hintergrund zeichnen
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Setze die Füllfarbe und die Transparenz
+    ctx.fillStyle = logoColor; // Die zufällig gewählte Farbe
+    ctx.globalAlpha = 1; // Vollständig deckend
+
+    // Färbe das Bild
+    const rectWidth = dvd.img.width * scale - 1; // 1 Pixel weniger als die Breite des Logos
+    const rectHeight = dvd.img.height * scale; // Höhe bleibt gleich
+    ctx.fillRect(dvd.x, dvd.y, rectWidth, rectHeight); // Färbe das Rechteck
+    ctx.globalCompositeOperation = 'source-atop'; // Setze die Kompositionsart
+
+    // Zeichne das Bild
+    ctx.drawImage(dvd.img, dvd.x, dvd.y, dvd.img.width * scale, dvd.img.height * scale);
+
+    // Setze die Kompositionsart zurück
+    ctx.globalCompositeOperation = 'source-over'; 
+
+    // Logo bewegen
+    dvd.x += dvd.xspeed;
+    dvd.y += dvd.yspeed;
+    
+    // Kollision überprüfen
+    checkHitBox();
+    
+    // Nächste Aktualisierung
+    requestAnimationFrame(update);
+}
+
+// Kollisionserkennung mit den Canvas-Rändern
+function checkHitBox() {
+    if (dvd.x + dvd.img.width * scale >= canvas.width || dvd.x <= 0) {
+        dvd.xspeed *= -1; // Richtung umkehren
+        pickColor();      // Farbe ändern
+    }
+    
+    if (dvd.y + dvd.img.height * scale >= canvas.height || dvd.y <= 0) {
+        dvd.yspeed *= -1; // Richtung umkehren
+        pickColor();      // Farbe ändern
+    }
+}
+
+// Zufällige Farbe im RGB-Format auswählen
+function pickColor() {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+    
+    logoColor = `rgb(${r}, ${g}, ${b})`; // Farbstring erstellen
+}
